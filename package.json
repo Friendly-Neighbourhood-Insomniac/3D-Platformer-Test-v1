@@ -15,7 +15,6 @@
     "@react-three/fiber": "^8.15.12",
     "@react-three/drei": "^9.96.0",
     "three": "^0.160.0",
-    "@react-three/gltf": "^6.2.16",
     "leva": "^0.9.35"
   },
   "devDependencies": {

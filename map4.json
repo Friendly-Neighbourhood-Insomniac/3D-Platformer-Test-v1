@@ -6,14 +6,11 @@
     { "id": 1, "position": [15, 2, 0], "asset": "flag.glb" }
   ],
   "platforms": [
-    // Main path (grassy blocks)
     { "id": "ground", "asset": "block-grass-large.glb", "position": [0, 0, 0], "scale": [5, 1, 5], "collision": true },
     { "id": "platform_1", "asset": "block-grass-long.glb", "position": [8, 0, 0], "scale": [3, 1, 2], "collision": true },
     { "id": "slope_1", "asset": "block-grass-large-slope.glb", "position": [12, 0, 0], "rotation": [0, 0, 0], "collision": true },
     { "id": "floating_1", "asset": "block-grass-overhang-large.glb", "position": [16, 4, 0], "collision": true },
     { "id": "moving_plat", "asset": "block-moving.glb", "position": [20, 3, 0], "collision": true, "movement": { "axis": "y", "range": [3, 6], "speed": 1 } },
-
-    // Side path (secret area)
     { "id": "secret_plat", "asset": "block-grass-low.glb", "position": [14, 2, -4], "collision": true, "isSecret": true }
   ],
   "obstacles": [
@@ -29,9 +26,7 @@
     { "id": "turret_1", "asset": "spike-block.glb", "position": [25, 3, 0], "shoots": true }
   ],
   "collectibles": [
-    // Main path coins
     { "id": "coin_1", "asset": "coin-gold.glb", "position": [7, 2, 0], "type": "currency", "value": 10 },
-    // Secret area reward
     { "id": "chest_1", "asset": "chest.glb", "position": [14, 2.5, -4], "isSecret": true, "contains": "jewel.glb" }
   ],
   "decorations": [

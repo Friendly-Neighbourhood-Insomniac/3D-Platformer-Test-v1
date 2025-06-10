@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment, Grid, Sky } from '@react-three/drei'
+import { OrbitControls, Environment, Sky } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
 import Scene from './components/Scene'
 import Player from './components/Player'
@@ -11,33 +11,63 @@ function App() {
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       <Canvas
         camera={{ 
-          position: [0, 8, 15], 
-          fov: 60,
+          position: [0, 15, 20], 
+          fov: 75,
           near: 0.1,
           far: 1000
         }}
         shadows
       >
         <Suspense fallback={null}>
+          {/* Jungle Sky */}
           <Sky 
             distance={450000}
-            sunPosition={[0, 1, 0]}
-            inclination={0}
+            sunPosition={[100, 20, 100]}
+            inclination={0.6}
             azimuth={0.25}
+            turbidity={10}
+            rayleigh={3}
+            mieCoefficient={0.005}
+            mieDirectionalG={0.7}
           />
           
-          <ambientLight intensity={0.4} />
+          {/* Jungle Lighting */}
+          <ambientLight intensity={0.6} color="#90EE90" />
           <directionalLight 
-            position={[50, 50, 25]} 
-            intensity={1.5}
+            position={[100, 100, 50]} 
+            intensity={1.8}
+            color="#FFF8DC"
             castShadow
             shadow-mapSize={[4096, 4096]}
-            shadow-camera-far={200}
-            shadow-camera-left={-50}
-            shadow-camera-right={50}
-            shadow-camera-top={50}
-            shadow-camera-bottom={-50}
+            shadow-camera-far={300}
+            shadow-camera-left={-100}
+            shadow-camera-right={100}
+            shadow-camera-top={100}
+            shadow-camera-bottom={-100}
           />
+          
+          {/* Additional atmospheric lighting */}
+          <pointLight 
+            position={[50, 30, 0]} 
+            intensity={0.5} 
+            color="#FFD700" 
+            distance={100}
+          />
+          <pointLight 
+            position={[100, 25, 0]} 
+            intensity={0.4} 
+            color="#FF6347" 
+            distance={80}
+          />
+          <pointLight 
+            position={[150, 35, 0]} 
+            intensity={0.6} 
+            color="#9370DB" 
+            distance={120}
+          />
+          
+          {/* Fog for depth */}
+          <fog attach="fog" args={['#87CEEB', 50, 200]} />
           
           <Physics gravity={[0, -30, 0]} debug={false}>
             <Scene />
@@ -48,25 +78,16 @@ function App() {
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
-            maxPolarAngle={Math.PI / 2.2}
-            minDistance={8}
-            maxDistance={80}
-            target={[40, 5, 0]}
+            maxPolarAngle={Math.PI / 2.1}
+            minDistance={10}
+            maxDistance={100}
+            target={[80, 10, 0]}
+            autoRotate={false}
+            autoRotateSpeed={0.5}
           />
           
-          <Grid 
-            args={[300, 300]} 
-            position={[0, -0.01, 0]}
-            cellSize={2}
-            cellThickness={0.5}
-            cellColor="#6f6f6f"
-            sectionSize={10}
-            sectionThickness={1}
-            sectionColor="#9d4b4b"
-            fadeDistance={150}
-            fadeStrength={1}
-            infiniteGrid
-          />
+          {/* Environment for reflections */}
+          <Environment preset="forest" background={false} />
         </Suspense>
       </Canvas>
       

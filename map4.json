@@ -7,82 +7,66 @@
     { "id": 2, "position": [60, 8, 0], "asset": "flag.glb" }
   ],
   "platforms": [
-    // Starting area - safe ground
     { "id": "start_ground", "asset": "block-grass-large.glb", "position": [0, 0, 0], "scale": [2, 1, 2], "collision": true },
     { "id": "start_platform", "asset": "block-grass.glb", "position": [8, 0, 0], "collision": true },
     
-    // First jumping section
     { "id": "jump_1", "asset": "block-grass.glb", "position": [14, 1, 0], "collision": true },
     { "id": "jump_2", "asset": "block-grass.glb", "position": [20, 2, 0], "collision": true },
     { "id": "jump_3", "asset": "block-grass-low.glb", "position": [26, 2.5, 0], "collision": true },
     
-    // Moving platform section
     { "id": "moving_1", "asset": "block-moving.glb", "position": [32, 3, 0], "collision": true, "movement": { "axis": "y", "range": [3, 5], "speed": 1.5 } },
     { "id": "moving_2", "asset": "block-moving-blue.glb", "position": [38, 4, 0], "collision": true, "movement": { "axis": "x", "range": [36, 42], "speed": 2 } },
     
-    // Upper secret area
     { "id": "secret_1", "asset": "block-grass-large.glb", "position": [35, 8, -8], "collision": true, "isSecret": true },
     { "id": "secret_2", "asset": "block-grass.glb", "position": [42, 8, -8], "collision": true, "isSecret": true },
     { "id": "secret_access", "asset": "block-grass-low.glb", "position": [32, 6, -4], "collision": true },
     
-    // Main path continues
     { "id": "platform_mid", "asset": "block-grass-large.glb", "position": [44, 4, 0], "scale": [1.5, 1, 1.5], "collision": true },
     { "id": "slope_up", "asset": "block-grass-large-slope.glb", "position": [50, 4, 0], "rotation": [0, 0, 0], "collision": true },
     
-    // Narrow bridge section
     { "id": "bridge_1", "asset": "block-grass-narrow.glb", "position": [56, 6, 0], "collision": true },
     { "id": "bridge_2", "asset": "block-grass-narrow.glb", "position": [60, 6, 0], "collision": true },
     { "id": "bridge_3", "asset": "block-grass-narrow.glb", "position": [64, 6, 0], "collision": true },
     
-    // Final area with overhangs - using existing overhang assets
     { "id": "overhang_1", "asset": "block-grass-overhang-large.glb", "position": [68, 6, 0], "collision": true },
     { "id": "overhang_2", "asset": "block-grass-overhang-edge.glb", "position": [74, 7, 0], "collision": true },
     { "id": "final_platform", "asset": "block-grass-large-tall.glb", "position": [80, 8, 0], "collision": true },
     
-    // Lower secret path
     { "id": "lower_1", "asset": "block-grass.glb", "position": [45, 1, 8], "collision": true, "isSecret": true },
     { "id": "lower_2", "asset": "block-grass-low.glb", "position": [52, 0, 8], "collision": true, "isSecret": true },
     { "id": "lower_3", "asset": "block-grass.glb", "position": [58, 1, 8], "collision": true, "isSecret": true }
   ],
   "obstacles": [
-    // Destructible crates for variety
     { "id": "crate_1", "asset": "crate.glb", "position": [15, 2, 0], "collision": true, "isDestructible": true },
     { "id": "crate_2", "asset": "crate-strong.glb", "position": [27, 3.5, 0], "collision": true, "health": 2 },
     { "id": "barrel_1", "asset": "barrel.glb", "position": [45, 5, 0], "collision": true, "isDestructible": true },
     { "id": "crate_secret", "asset": "crate-item.glb", "position": [42, 9, -8], "collision": true, "isDestructible": true }
   ],
   "traps": [
-    // Spike traps at key locations
     { "id": "spikes_1", "asset": "trap-spikes.glb", "position": [22, 2, 0], "damage": 1 },
     { "id": "spikes_2", "asset": "spike-block.glb", "position": [40, 4, 0], "damage": 1 },
     { "id": "spikes_bridge", "asset": "trap-spikes.glb", "position": [62, 6, 0], "damage": 1 },
     
-    // Moving saw blade
     { "id": "saw_1", "asset": "saw.glb", "position": [70, 8, 0], "movement": { "axis": "x", "range": [68, 72], "speed": 3 }, "damage": 2 }
   ],
   "enemies": [
-    // Patrolling enemies
     { "id": "patrol_1", "asset": "block-moving-blue.glb", "position": [48, 6, 0], "patrolPath": [[46,6,0], [52,6,0]], "health": 2 },
     { "id": "guard_1", "asset": "spike-block-wide.glb", "position": [76, 8, 0], "shoots": true, "health": 3 }
   ],
   "collectibles": [
-    // Progressive coin rewards
     { "id": "coin_1", "asset": "coin-bronze.glb", "position": [10, 1, 0], "type": "currency", "value": 5 },
     { "id": "coin_2", "asset": "coin-bronze.glb", "position": [16, 2, 0], "type": "currency", "value": 5 },
     { "id": "coin_3", "asset": "coin-silver.glb", "position": [34, 4, 0], "type": "currency", "value": 10 },
     { "id": "coin_4", "asset": "coin-silver.glb", "position": [58, 7, 0], "type": "currency", "value": 10 },
     { "id": "coin_5", "asset": "coin-gold.glb", "position": [72, 8, 0], "type": "currency", "value": 20 },
     
-    // Secret area rewards
     { "id": "secret_coin", "asset": "coin-gold.glb", "position": [38, 9, -8], "type": "currency", "value": 25, "isSecret": true },
     { "id": "secret_jewel", "asset": "jewel.glb", "position": [54, 2, 8], "type": "treasure", "value": 50, "isSecret": true },
     { "id": "health_pickup", "asset": "heart.glb", "position": [60, 2, 8], "type": "health", "value": 1, "isSecret": true },
     
-    // Final treasure
     { "id": "final_chest", "asset": "chest.glb", "position": [82, 9, 0], "contains": "jewel.glb", "value": 100 }
   ],
   "decorations": [
-    // Environmental storytelling
     { "asset": "tree.glb", "position": [-4, 0, -4], "scale": [1.2, 1.2, 1.2] },
     { "asset": "tree.glb", "position": [2, 0, 4], "scale": [0.8, 0.8, 0.8] },
     { "asset": "flowers.glb", "position": [6, 0.5, 2], "scale": [0.6, 0.6, 0.6] },
@@ -92,18 +76,15 @@
     { "asset": "plant.glb", "position": [46, 5, 2] },
     { "asset": "stones.glb", "position": [66, 6.5, -1] },
     
-    // Guidance signs
     { "asset": "sign.glb", "position": [4, 1, 2], "rotation": [0, -30, 0] },
     { "asset": "sign.glb", "position": [28, 3, 2], "rotation": [0, 45, 0] },
     
-    // Industrial elements
     { "asset": "fence-straight.glb", "position": [48, 4, -3] },
     { "asset": "fence-corner.glb", "position": [52, 4, -3] },
     { "asset": "ladder.glb", "position": [30, 3, -2] },
     { "asset": "poles.glb", "position": [74, 7, 3] }
   ],
   "triggers": [
-    // Key-locked final area
     { "id": "final_door", "asset": "door-rotate.glb", "position": [78, 8, 0], "requires": "key.glb", "opensTo": "victory" },
     { "id": "key_item", "asset": "key.glb", "position": [35, 9, -8], "type": "key", "isSecret": true }
   ]

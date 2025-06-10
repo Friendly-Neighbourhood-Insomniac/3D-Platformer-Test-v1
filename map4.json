@@ -1,40 +1,126 @@
 {
-  "name": "Lost Jungle Trail",
+  "name": "Crystal Cavern Adventure",
   "theme": "grassy",
-  "playerStart": { "x": 0, "y": 1.5, "z": 0 },
+  "playerStart": { "x": 0, "y": 2, "z": 0 },
   "checkpoints": [
-    { "id": 1, "position": [15, 2, 0], "asset": "flag.glb" }
+    { "id": 1, "position": [25, 3, 0], "asset": "flag.glb" },
+    { "id": 2, "position": [50, 8, -10], "asset": "flag.glb" },
+    { "id": 3, "position": [75, 12, 5], "asset": "flag.glb" }
   ],
   "platforms": [
-    { "id": "ground", "asset": "block-grass-large.glb", "position": [0, 0, 0], "scale": [5, 1, 5], "collision": true },
-    { "id": "platform_1", "asset": "block-grass-long.glb", "position": [8, 0, 0], "scale": [3, 1, 2], "collision": true },
-    { "id": "slope_1", "asset": "block-grass-large-slope.glb", "position": [12, 0, 0], "rotation": [0, 0, 0], "collision": true },
-    { "id": "floating_1", "asset": "block-grass-overhang-large.glb", "position": [16, 4, 0], "collision": true },
-    { "id": "moving_plat", "asset": "block-moving.glb", "position": [20, 3, 0], "collision": true, "movement": { "axis": "y", "range": [3, 6], "speed": 1 } },
-    { "id": "secret_plat", "asset": "block-grass-low.glb", "position": [14, 2, -4], "collision": true, "isSecret": true }
+    { "id": "start_platform", "asset": "block-grass-large.glb", "position": [0, 0, 0], "scale": [2, 1, 2], "collision": true },
+    
+    { "id": "path_1", "asset": "block-grass.glb", "position": [6, 0, 0], "collision": true },
+    { "id": "path_2", "asset": "block-grass.glb", "position": [12, 0, 0], "collision": true },
+    { "id": "jump_gap_1", "asset": "block-grass.glb", "position": [20, 1, 0], "collision": true },
+    
+    { "id": "elevated_section", "asset": "block-grass-large.glb", "position": [25, 2, 0], "scale": [1.5, 1, 1.5], "collision": true },
+    { "id": "slope_up", "asset": "block-grass-large-slope.glb", "position": [30, 2, 0], "rotation": [0, 0, 0], "collision": true },
+    { "id": "high_platform", "asset": "block-grass-overhang-large.glb", "position": [35, 5, 0], "collision": true },
+    
+    { "id": "moving_platform_1", "asset": "block-moving.glb", "position": [42, 6, 0], "collision": true, "movement": { "axis": "y", "range": [4, 8], "speed": 1.5 } },
+    { "id": "moving_platform_2", "asset": "block-moving-blue.glb", "position": [48, 7, 0], "collision": true, "movement": { "axis": "x", "range": [46, 52], "speed": 2 } },
+    
+    { "id": "secret_upper", "asset": "block-grass-overhang.glb", "position": [40, 10, -8], "collision": true, "isSecret": true },
+    { "id": "secret_platform", "asset": "block-grass-hexagon.glb", "position": [45, 11, -10], "collision": true, "isSecret": true },
+    
+    { "id": "narrow_bridge_1", "asset": "block-grass-narrow.glb", "position": [55, 8, 0], "collision": true },
+    { "id": "narrow_bridge_2", "asset": "block-grass-narrow.glb", "position": [58, 8, 0], "collision": true },
+    { "id": "narrow_bridge_3", "asset": "block-grass-narrow.glb", "position": [61, 8, 0], "collision": true },
+    
+    { "id": "curve_platform", "asset": "block-grass-curve.glb", "position": [65, 8, 3], "rotation": [0, 45, 0], "collision": true },
+    { "id": "final_area", "asset": "block-grass-large-tall.glb", "position": [70, 10, 5], "scale": [2, 1, 2], "collision": true },
+    
+    { "id": "lower_secret_1", "asset": "block-grass-low.glb", "position": [15, -2, -5], "collision": true, "isSecret": true },
+    { "id": "lower_secret_2", "asset": "block-grass-low-large.glb", "position": [22, -2, -8], "collision": true, "isSecret": true },
+    
+    { "id": "side_path_1", "asset": "block-grass.glb", "position": [8, 1, 6], "collision": true },
+    { "id": "side_path_2", "asset": "block-grass.glb", "position": [14, 2, 8], "collision": true },
+    { "id": "side_path_3", "asset": "block-grass-edge.glb", "position": [20, 3, 10], "collision": true },
+    
+    { "id": "final_challenge", "asset": "block-grass-overhang-large.glb", "position": [75, 12, 5], "collision": true }
   ],
   "obstacles": [
-    { "id": "crate_1", "asset": "crate-strong.glb", "position": [10, 1.5, 2], "collision": true, "health": 3 },
-    { "id": "barrel_1", "asset": "barrel.glb", "position": [18, 1.5, -1], "collision": true, "isDestructible": true }
+    { "id": "crate_cluster_1", "asset": "crate.glb", "position": [8, 1, 1], "collision": true, "isDestructible": true },
+    { "id": "crate_cluster_2", "asset": "crate.glb", "position": [9, 1, -1], "collision": true, "isDestructible": true },
+    { "id": "strong_crate_1", "asset": "crate-strong.glb", "position": [15, 1, 2], "collision": true, "health": 3 },
+    
+    { "id": "barrel_1", "asset": "barrel.glb", "position": [22, 2, 1], "collision": true, "isDestructible": true },
+    { "id": "barrel_2", "asset": "barrel.glb", "position": [27, 3, -2], "collision": true, "isDestructible": true },
+    
+    { "id": "item_crate_1", "asset": "crate-item.glb", "position": [45, 12, -10], "collision": true, "contains": "coin-gold.glb" },
+    { "id": "strong_item_crate", "asset": "crate-item-strong.glb", "position": [70, 11, 7], "collision": true, "health": 2, "contains": "jewel.glb" }
   ],
   "traps": [
-    { "id": "spikes_1", "asset": "trap-spikes.glb", "position": [13, 0, 0], "damage": 1 },
-    { "id": "saw_1", "asset": "saw.glb", "position": [22, 2, 0], "rotation": [0, 0, 90], "movement": { "axis": "x", "range": [20, 24], "speed": 2 } }
+    { "id": "spike_trap_1", "asset": "trap-spikes.glb", "position": [16, 0, 0], "damage": 1 },
+    { "id": "spike_trap_2", "asset": "trap-spikes-large.glb", "position": [38, 5, 0], "damage": 2 },
+    
+    { "id": "spike_block_1", "asset": "spike-block.glb", "position": [52, 8, 2], "damage": 1 },
+    { "id": "spike_block_wide", "asset": "spike-block-wide.glb", "position": [67, 8, 0], "damage": 1 },
+    
+    { "id": "rotating_saw", "asset": "saw.glb", "position": [60, 9, 0], "rotation": [0, 0, 0], "movement": { "axis": "rotation", "speed": 3 }, "damage": 2 },
+    
+    { "id": "bomb_trap", "asset": "bomb.glb", "position": [72, 11, 3], "damage": 3, "explosive": true }
   ],
   "enemies": [
-    { "id": "drone_1", "asset": "block-moving-blue.glb", "position": [15, 5, 0], "patrolPath": [[15,5,0], [18,5,0]], "health": 2 },
-    { "id": "turret_1", "asset": "spike-block.glb", "position": [25, 3, 0], "shoots": true }
+    { "id": "patrol_drone_1", "asset": "block-moving-blue.glb", "position": [32, 6, 0], "patrolPath": [[30, 6, 0], [36, 6, 0]], "health": 2 },
+    { "id": "guard_turret", "asset": "spike-block.glb", "position": [50, 9, -3], "shoots": true, "health": 3 },
+    { "id": "flying_enemy", "asset": "block-moving.glb", "position": [65, 12, 0], "patrolPath": [[62, 12, 0], [68, 12, 0], [65, 15, 0]], "health": 1 }
   ],
   "collectibles": [
-    { "id": "coin_1", "asset": "coin-gold.glb", "position": [7, 2, 0], "type": "currency", "value": 10 },
-    { "id": "chest_1", "asset": "chest.glb", "position": [14, 2.5, -4], "isSecret": true, "contains": "jewel.glb" }
+    { "id": "coin_1", "asset": "coin-bronze.glb", "position": [6, 1.5, 0], "type": "currency", "value": 5 },
+    { "id": "coin_2", "asset": "coin-silver.glb", "position": [12, 1.5, 0], "type": "currency", "value": 10 },
+    { "id": "coin_3", "asset": "coin-gold.glb", "position": [25, 3.5, 0], "type": "currency", "value": 20 },
+    
+    { "id": "secret_coin_1", "asset": "coin-gold.glb", "position": [15, -1, -5], "type": "currency", "value": 50, "isSecret": true },
+    { "id": "secret_coin_2", "asset": "coin-gold.glb", "position": [22, -1, -8], "type": "currency", "value": 50, "isSecret": true },
+    
+    { "id": "heart_pickup", "asset": "heart.glb", "position": [40, 11.5, -8], "type": "health", "value": 1, "isSecret": true },
+    
+    { "id": "key_item", "asset": "key.glb", "position": [50, 9, -10], "type": "key", "opensLock": "final_door", "isSecret": true },
+    
+    { "id": "treasure_chest", "asset": "chest.glb", "position": [75, 13, 5], "contains": "jewel.glb", "requiresKey": true },
+    { "id": "final_jewel", "asset": "jewel.glb", "position": [75, 14, 5], "type": "objective", "value": 1000 }
   ],
   "decorations": [
-    { "asset": "tree.glb", "position": [-3, 0, -3], "scale": [1.5, 1.5, 1.5] },
-    { "asset": "sign.glb", "position": [5, 1, 2], "rotation": [0, -45, 0] },
-    { "asset": "flowers.glb", "position": [9, 0, 1.5], "scale": [0.5, 0.5, 0.5] }
+    { "asset": "tree.glb", "position": [-5, 0, -5], "scale": [1.2, 1.2, 1.2] },
+    { "asset": "tree.glb", "position": [3, 0, -8], "scale": [0.8, 0.8, 0.8] },
+    { "asset": "tree-pine.glb", "position": [10, 0, -6], "scale": [1.0, 1.0, 1.0] },
+    { "asset": "tree-pine-small.glb", "position": [18, 0, -4], "scale": [1.0, 1.0, 1.0] },
+    
+    { "asset": "flowers.glb", "position": [2, 0.5, 2], "scale": [0.7, 0.7, 0.7] },
+    { "asset": "flowers-tall.glb", "position": [7, 0.5, 3], "scale": [0.8, 0.8, 0.8] },
+    { "asset": "grass.glb", "position": [13, 0.5, 2], "scale": [1.2, 1.2, 1.2] },
+    
+    { "asset": "rocks.glb", "position": [28, 2.5, -3], "scale": [1.0, 1.0, 1.0] },
+    { "asset": "stones.glb", "position": [33, 5.5, 2], "scale": [0.8, 0.8, 0.8] },
+    
+    { "asset": "sign.glb", "position": [4, 1, 1], "rotation": [0, -30, 0] },
+    { "asset": "sign.glb", "position": [24, 3, 2], "rotation": [0, 45, 0] },
+    
+    { "asset": "hedge.glb", "position": [11, 0, 4], "scale": [1.0, 1.0, 1.0] },
+    { "asset": "hedge-corner.glb", "position": [17, 0, 6], "rotation": [0, 45, 0] },
+    
+    { "asset": "fence-straight.glb", "position": [35, 5, -4], "rotation": [0, 90, 0] },
+    { "asset": "fence-corner.glb", "position": [38, 5, -4], "rotation": [0, 0, 0] },
+    
+    { "asset": "ladder.glb", "position": [40, 5, -6], "rotation": [0, 0, 0] },
+    { "asset": "ladder-long.glb", "position": [68, 8, 8], "rotation": [0, 0, 0] },
+    
+    { "asset": "mushrooms.glb", "position": [55, 8.5, -2], "scale": [0.6, 0.6, 0.6] },
+    { "asset": "plant.glb", "position": [62, 8.5, 1], "scale": [0.8, 0.8, 0.8] },
+    
+    { "asset": "poles.glb", "position": [45, 8, 5], "scale": [1.0, 1.0, 1.0] }
   ],
   "triggers": [
-    { "id": "door_1", "asset": "door-rotate.glb", "position": [28, 0, 0], "requires": "key.glb", "opensTo": "level_2" }
+    { "id": "checkpoint_trigger_1", "position": [25, 3, 0], "type": "checkpoint", "checkpointId": 1 },
+    { "id": "checkpoint_trigger_2", "position": [50, 8, -10], "type": "checkpoint", "checkpointId": 2 },
+    { "id": "checkpoint_trigger_3", "position": [75, 12, 5], "type": "checkpoint", "checkpointId": 3 },
+    
+    { "id": "secret_area_trigger", "position": [38, 6, -5], "type": "secret_reveal", "revealsArea": "upper_secret" },
+    
+    { "id": "final_door", "asset": "door-rotate-large.glb", "position": [78, 12, 5], "requires": "key.glb", "opensTo": "victory" },
+    
+    { "id": "moving_platform_trigger", "position": [40, 6, 0], "type": "activate_movement", "targets": ["moving_platform_1", "moving_platform_2"] }
   ]
 }

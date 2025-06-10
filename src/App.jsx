@@ -11,10 +11,10 @@ function App() {
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       <Canvas
         camera={{ 
-          position: [0, 15, 20], 
+          position: [0, 30, 40], 
           fov: 75,
           near: 0.1,
-          far: 1000
+          far: 2000
         }}
         shadows
       >
@@ -22,7 +22,7 @@ function App() {
           {/* Jungle Sky */}
           <Sky 
             distance={450000}
-            sunPosition={[100, 20, 100]}
+            sunPosition={[200, 40, 200]}
             inclination={0.6}
             azimuth={0.25}
             turbidity={10}
@@ -34,40 +34,46 @@ function App() {
           {/* Jungle Lighting */}
           <ambientLight intensity={0.6} color="#90EE90" />
           <directionalLight 
-            position={[100, 100, 50]} 
+            position={[300, 200, 100]} 
             intensity={1.8}
             color="#FFF8DC"
             castShadow
             shadow-mapSize={[4096, 4096]}
-            shadow-camera-far={300}
-            shadow-camera-left={-100}
-            shadow-camera-right={100}
-            shadow-camera-top={100}
-            shadow-camera-bottom={-100}
+            shadow-camera-far={800}
+            shadow-camera-left={-300}
+            shadow-camera-right={300}
+            shadow-camera-top={300}
+            shadow-camera-bottom={-300}
           />
           
-          {/* Additional atmospheric lighting */}
+          {/* Additional atmospheric lighting for massive scale */}
           <pointLight 
-            position={[50, 30, 0]} 
-            intensity={0.5} 
+            position={[150, 60, 0]} 
+            intensity={0.8} 
             color="#FFD700" 
-            distance={100}
+            distance={200}
           />
           <pointLight 
-            position={[100, 25, 0]} 
-            intensity={0.4} 
-            color="#FF6347" 
-            distance={80}
-          />
-          <pointLight 
-            position={[150, 35, 0]} 
+            position={[300, 50, 0]} 
             intensity={0.6} 
+            color="#FF6347" 
+            distance={180}
+          />
+          <pointLight 
+            position={[450, 70, 0]} 
+            intensity={0.8} 
             color="#9370DB" 
-            distance={120}
+            distance={220}
+          />
+          <pointLight 
+            position={[600, 80, 0]} 
+            intensity={1.0} 
+            color="#00FFFF" 
+            distance={250}
           />
           
-          {/* Fog for depth */}
-          <fog attach="fog" args={['#87CEEB', 50, 200]} />
+          {/* Fog for massive depth */}
+          <fog attach="fog" args={['#87CEEB', 100, 500]} />
           
           <Physics gravity={[0, -30, 0]} debug={false}>
             <Scene />
@@ -79,9 +85,9 @@ function App() {
             enableZoom={true}
             enableRotate={true}
             maxPolarAngle={Math.PI / 2.1}
-            minDistance={10}
-            maxDistance={100}
-            target={[80, 10, 0]}
+            minDistance={20}
+            maxDistance={300}
+            target={[300, 20, 0]}
             autoRotate={false}
             autoRotateSpeed={0.5}
           />

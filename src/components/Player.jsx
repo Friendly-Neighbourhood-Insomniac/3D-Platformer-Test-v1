@@ -80,9 +80,9 @@ function Player() {
     
     const { forward, backward, left, right, jump } = keys.current
     
-    const moveSpeed = 8
-    const jumpForce = 15
-    const airControl = 0.3
+    const moveSpeed = 12 // Increased speed for massive scale
+    const jumpForce = 18 // Increased jump for larger gaps
+    const airControl = 0.4
     
     // Get current velocity
     const currentVel = playerRef.current.linvel()
@@ -127,10 +127,10 @@ function Player() {
       }, true)
     }
     
-    // Reset player if they fall too far
+    // Reset player if they fall too far (adjusted for massive scale)
     const position = playerRef.current.translation()
-    if (position.y < -10) {
-      playerRef.current.setTranslation({ x: 0, y: 5, z: 0 }, true)
+    if (position.y < -20) {
+      playerRef.current.setTranslation({ x: 0, y: 8, z: 0 }, true)
       playerRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true)
     }
   })
@@ -138,7 +138,7 @@ function Player() {
   return (
     <RigidBody
       ref={playerRef}
-      position={[0, 3, 0]}
+      position={[0, 6, 0]}
       type="dynamic"
       colliders="ball"
       mass={1}
@@ -148,7 +148,7 @@ function Player() {
       angularDamping={0.5}
     >
       <mesh castShadow>
-        <capsuleGeometry args={[0.5, 1]} />
+        <capsuleGeometry args={[0.8, 2]} />
         <meshStandardMaterial 
           color={isGrounded ? "#4a90e2" : "#e24a4a"} 
           emissive={isGrounded ? "#000000" : "#330000"}

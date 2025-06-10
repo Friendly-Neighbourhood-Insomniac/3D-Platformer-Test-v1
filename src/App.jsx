@@ -11,7 +11,7 @@ function App() {
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       <Canvas
         camera={{ 
-          position: [10, 10, 10], 
+          position: [15, 8, 15], 
           fov: 60,
           near: 0.1,
           far: 1000
@@ -19,21 +19,21 @@ function App() {
         shadows
       >
         <Suspense fallback={null}>
-          <Environment preset="sunset" />
-          <ambientLight intensity={0.4} />
+          <Environment preset="forest" />
+          <ambientLight intensity={0.3} />
           <directionalLight 
-            position={[10, 10, 5]} 
-            intensity={1}
+            position={[20, 20, 10]} 
+            intensity={1.2}
             castShadow
             shadow-mapSize={[2048, 2048]}
-            shadow-camera-far={50}
-            shadow-camera-left={-20}
-            shadow-camera-right={20}
-            shadow-camera-top={20}
-            shadow-camera-bottom={-20}
+            shadow-camera-far={100}
+            shadow-camera-left={-30}
+            shadow-camera-right={30}
+            shadow-camera-top={30}
+            shadow-camera-bottom={-30}
           />
           
-          <Physics gravity={[0, -30, 0]}>
+          <Physics gravity={[0, -25, 0]} broadphase="SAP">
             <Scene />
             <Player />
           </Physics>
@@ -43,18 +43,20 @@ function App() {
             enableZoom={true}
             enableRotate={true}
             maxPolarAngle={Math.PI / 2}
+            minDistance={5}
+            maxDistance={50}
           />
           
           <Grid 
-            args={[100, 100]} 
+            args={[200, 200]} 
             position={[0, -0.01, 0]}
-            cellSize={1}
+            cellSize={2}
             cellThickness={0.5}
             cellColor="#6f6f6f"
             sectionSize={10}
             sectionThickness={1}
             sectionColor="#9d4b4b"
-            fadeDistance={50}
+            fadeDistance={100}
             fadeStrength={1}
             infiniteGrid
           />

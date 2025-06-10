@@ -1,0 +1,707 @@
+{
+  "scene": [
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        6,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        12,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        18,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        24,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        30,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        24
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        0,
+        42
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        40,
+        0.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        40,
+        0.2,
+        12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        40,
+        0.2,
+        24
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        40,
+        0.2,
+        36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        40,
+        1,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        46,
+        1,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        52,
+        1,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        58,
+        1,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        64,
+        1,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "barrel",
+      "path": "assets/Models/GLB format/barrel.glb",
+      "position": [
+        46,
+        1.5,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        70,
+        2,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass-edge",
+      "path": "assets/Models/GLB format/block-grass-edge.glb",
+      "position": [
+        70,
+        3,
+        42
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        70,
+        2,
+        36
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass-edge",
+      "path": "assets/Models/GLB format/block-grass-edge.glb",
+      "position": [
+        70,
+        3,
+        30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        70,
+        2,
+        24
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass-edge",
+      "path": "assets/Models/GLB format/block-grass-edge.glb",
+      "position": [
+        70,
+        3,
+        18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        70,
+        2,
+        12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        70,
+        2.2,
+        48
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        70,
+        3.2,
+        30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "spikes",
+      "path": "assets/Models/GLB format/spikes.glb",
+      "position": [
+        70,
+        2.2,
+        12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "block-grass-large",
+      "path": "assets/Models/GLB format/block-grass-large.glb",
+      "position": [
+        70,
+        2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "barrel",
+      "path": "assets/Models/GLB format/barrel.glb",
+      "position": [
+        72,
+        2.2,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "crate",
+      "path": "assets/Models/GLB format/crate.glb",
+      "position": [
+        68,
+        2.2,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

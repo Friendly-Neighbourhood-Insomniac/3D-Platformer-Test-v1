@@ -1,0 +1,45 @@
+{
+  "name": "Lost Jungle Trail",
+  "theme": "grassy",
+  "playerStart": { "x": 0, "y": 1.5, "z": 0 },
+  "checkpoints": [
+    { "id": 1, "position": [15, 2, 0], "asset": "flag.glb" }
+  ],
+  "platforms": [
+    // Main path (grassy blocks)
+    { "id": "ground", "asset": "block-grass-large.glb", "position": [0, 0, 0], "scale": [5, 1, 5], "collision": true },
+    { "id": "platform_1", "asset": "block-grass-long.glb", "position": [8, 0, 0], "scale": [3, 1, 2], "collision": true },
+    { "id": "slope_1", "asset": "block-grass-large-slope.glb", "position": [12, 0, 0], "rotation": [0, 0, 0], "collision": true },
+    { "id": "floating_1", "asset": "block-grass-overhang-large.glb", "position": [16, 4, 0], "collision": true },
+    { "id": "moving_plat", "asset": "block-moving.glb", "position": [20, 3, 0], "collision": true, "movement": { "axis": "y", "range": [3, 6], "speed": 1 } },
+
+    // Side path (secret area)
+    { "id": "secret_plat", "asset": "block-grass-low.glb", "position": [14, 2, -4], "collision": true, "isSecret": true }
+  ],
+  "obstacles": [
+    { "id": "crate_1", "asset": "crate-strong.glb", "position": [10, 1.5, 2], "collision": true, "health": 3 },
+    { "id": "barrel_1", "asset": "barrel.glb", "position": [18, 1.5, -1], "collision": true, "isDestructible": true }
+  ],
+  "traps": [
+    { "id": "spikes_1", "asset": "trap-spikes.glb", "position": [13, 0, 0], "damage": 1 },
+    { "id": "saw_1", "asset": "saw.glb", "position": [22, 2, 0], "rotation": [0, 0, 90], "movement": { "axis": "x", "range": [20, 24], "speed": 2 } }
+  ],
+  "enemies": [
+    { "id": "drone_1", "asset": "block-moving-blue.glb", "position": [15, 5, 0], "patrolPath": [[15,5,0], [18,5,0]], "health": 2 },
+    { "id": "turret_1", "asset": "spike-block.glb", "position": [25, 3, 0], "shoots": true }
+  ],
+  "collectibles": [
+    // Main path coins
+    { "id": "coin_1", "asset": "coin-gold.glb", "position": [7, 2, 0], "type": "currency", "value": 10 },
+    // Secret area reward
+    { "id": "chest_1", "asset": "chest.glb", "position": [14, 2.5, -4], "isSecret": true, "contains": "jewel.glb" }
+  ],
+  "decorations": [
+    { "asset": "tree.glb", "position": [-3, 0, -3], "scale": [1.5, 1.5, 1.5] },
+    { "asset": "sign.glb", "position": [5, 1, 2], "rotation": [0, -45, 0] },
+    { "asset": "flowers.glb", "position": [9, 0, 1.5], "scale": [0.5, 0.5, 0.5] }
+  ],
+  "triggers": [
+    { "id": "door_1", "asset": "door-rotate.glb", "position": [28, 0, 0], "requires": "key.glb", "opensTo": "level_2" }
+  ]
+}

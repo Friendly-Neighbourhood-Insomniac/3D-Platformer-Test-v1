@@ -1,0 +1,2702 @@
+{
+  "scene": [
+    {
+      "id": "arrow",
+      "path": "assets/Models/GLB format/arrow.glb",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "arrows",
+      "path": "assets/Models/GLB format/arrows.glb",
+      "position": [
+        5,
+        2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "barrel",
+      "path": "assets/Models/GLB format/barrel.glb",
+      "position": [
+        10,
+        4,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-corner-low",
+      "path": "assets/Models/GLB format/block-grass-corner-low.glb",
+      "position": [
+        15,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-corner-overhang-low",
+      "path": "assets/Models/GLB format/block-grass-corner-overhang-low.glb",
+      "position": [
+        20,
+        2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-corner-overhang",
+      "path": "assets/Models/GLB format/block-grass-corner-overhang.glb",
+      "position": [
+        25,
+        4,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-corner",
+      "path": "assets/Models/GLB format/block-grass-corner.glb",
+      "position": [
+        0,
+        0,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-curve-half",
+      "path": "assets/Models/GLB format/block-grass-curve-half.glb",
+      "position": [
+        5,
+        2,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-curve-low",
+      "path": "assets/Models/GLB format/block-grass-curve-low.glb",
+      "position": [
+        10,
+        4,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-curve",
+      "path": "assets/Models/GLB format/block-grass-curve.glb",
+      "position": [
+        15,
+        0,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-edge",
+      "path": "assets/Models/GLB format/block-grass-edge.glb",
+      "position": [
+        20,
+        2,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-hexagon",
+      "path": "assets/Models/GLB format/block-grass-hexagon.glb",
+      "position": [
+        25,
+        4,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large-slope-narrow",
+      "path": "assets/Models/GLB format/block-grass-large-slope-narrow.glb",
+      "position": [
+        0,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large-slope-steep-narrow",
+      "path": "assets/Models/GLB format/block-grass-large-slope-steep-narrow.glb",
+      "position": [
+        5,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large-slope-steep",
+      "path": "assets/Models/GLB format/block-grass-large-slope-steep.glb",
+      "position": [
+        10,
+        4,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large-slope",
+      "path": "assets/Models/GLB format/block-grass-large-slope.glb",
+      "position": [
+        15,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large-tall",
+      "path": "assets/Models/GLB format/block-grass-large-tall.glb",
+      "position": [
+        20,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-large",
+      "path": "assets/Models/GLB format/block-grass-large.glb",
+      "position": [
+        25,
+        4,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-long",
+      "path": "assets/Models/GLB format/block-grass-long.glb",
+      "position": [
+        0,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-low-hexagon",
+      "path": "assets/Models/GLB format/block-grass-low-hexagon.glb",
+      "position": [
+        5,
+        2,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-low-large",
+      "path": "assets/Models/GLB format/block-grass-low-large.glb",
+      "position": [
+        10,
+        4,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-low-long",
+      "path": "assets/Models/GLB format/block-grass-low-long.glb",
+      "position": [
+        15,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-low-narrow",
+      "path": "assets/Models/GLB format/block-grass-low-narrow.glb",
+      "position": [
+        20,
+        2,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-low",
+      "path": "assets/Models/GLB format/block-grass-low.glb",
+      "position": [
+        25,
+        4,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-narrow",
+      "path": "assets/Models/GLB format/block-grass-narrow.glb",
+      "position": [
+        0,
+        0,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-corner",
+      "path": "assets/Models/GLB format/block-grass-overhang-corner.glb",
+      "position": [
+        5,
+        2,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-edge",
+      "path": "assets/Models/GLB format/block-grass-overhang-edge.glb",
+      "position": [
+        10,
+        4,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-hexagon",
+      "path": "assets/Models/GLB format/block-grass-overhang-hexagon.glb",
+      "position": [
+        15,
+        0,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large-slope-narrow",
+      "path": "assets/Models/GLB format/block-grass-overhang-large-slope-narrow.glb",
+      "position": [
+        20,
+        2,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large-slope-steep-narrow",
+      "path": "assets/Models/GLB format/block-grass-overhang-large-slope-steep-narrow.glb",
+      "position": [
+        25,
+        4,
+        -20
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large-slope-steep",
+      "path": "assets/Models/GLB format/block-grass-overhang-large-slope-steep.glb",
+      "position": [
+        0,
+        0,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large-slope",
+      "path": "assets/Models/GLB format/block-grass-overhang-large-slope.glb",
+      "position": [
+        5,
+        2,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large-tall",
+      "path": "assets/Models/GLB format/block-grass-overhang-large-tall.glb",
+      "position": [
+        10,
+        4,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-large",
+      "path": "assets/Models/GLB format/block-grass-overhang-large.glb",
+      "position": [
+        15,
+        0,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-long",
+      "path": "assets/Models/GLB format/block-grass-overhang-long.glb",
+      "position": [
+        20,
+        2,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-low-hexagon",
+      "path": "assets/Models/GLB format/block-grass-overhang-low-hexagon.glb",
+      "position": [
+        25,
+        4,
+        -25
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-low-large",
+      "path": "assets/Models/GLB format/block-grass-overhang-low-large.glb",
+      "position": [
+        0,
+        0,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-low-long",
+      "path": "assets/Models/GLB format/block-grass-overhang-low-long.glb",
+      "position": [
+        5,
+        2,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-low-narrow",
+      "path": "assets/Models/GLB format/block-grass-overhang-low-narrow.glb",
+      "position": [
+        10,
+        4,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-low",
+      "path": "assets/Models/GLB format/block-grass-overhang-low.glb",
+      "position": [
+        15,
+        0,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass-overhang-narrow",
+      "path": "assets/Models/GLB format/block-grass-overhang-narrow.glb",
+      "position": [
+        20,
+        2,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-grass",
+      "path": "assets/Models/GLB format/block-grass.glb",
+      "position": [
+        25,
+        4,
+        -30
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-moving-blue",
+      "path": "assets/Models/GLB format/block-moving-blue.glb",
+      "position": [
+        0,
+        0,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-moving-large",
+      "path": "assets/Models/GLB format/block-moving-large.glb",
+      "position": [
+        5,
+        2,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-moving",
+      "path": "assets/Models/GLB format/block-moving.glb",
+      "position": [
+        10,
+        4,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-corner-low",
+      "path": "assets/Models/GLB format/block-snow-corner-low.glb",
+      "position": [
+        15,
+        0,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-corner-overhang-low",
+      "path": "assets/Models/GLB format/block-snow-corner-overhang-low.glb",
+      "position": [
+        20,
+        2,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-corner-overhang",
+      "path": "assets/Models/GLB format/block-snow-corner-overhang.glb",
+      "position": [
+        25,
+        4,
+        -35
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-corner",
+      "path": "assets/Models/GLB format/block-snow-corner.glb",
+      "position": [
+        0,
+        0,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-curve-half",
+      "path": "assets/Models/GLB format/block-snow-curve-half.glb",
+      "position": [
+        5,
+        2,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-curve-low",
+      "path": "assets/Models/GLB format/block-snow-curve-low.glb",
+      "position": [
+        10,
+        4,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-curve",
+      "path": "assets/Models/GLB format/block-snow-curve.glb",
+      "position": [
+        15,
+        0,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-edge",
+      "path": "assets/Models/GLB format/block-snow-edge.glb",
+      "position": [
+        20,
+        2,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-hexagon",
+      "path": "assets/Models/GLB format/block-snow-hexagon.glb",
+      "position": [
+        25,
+        4,
+        -40
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large-slope-narrow",
+      "path": "assets/Models/GLB format/block-snow-large-slope-narrow.glb",
+      "position": [
+        0,
+        0,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large-slope-steep-narrow",
+      "path": "assets/Models/GLB format/block-snow-large-slope-steep-narrow.glb",
+      "position": [
+        5,
+        2,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large-slope-steep",
+      "path": "assets/Models/GLB format/block-snow-large-slope-steep.glb",
+      "position": [
+        10,
+        4,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large-slope",
+      "path": "assets/Models/GLB format/block-snow-large-slope.glb",
+      "position": [
+        15,
+        0,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large-tall",
+      "path": "assets/Models/GLB format/block-snow-large-tall.glb",
+      "position": [
+        20,
+        2,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-large",
+      "path": "assets/Models/GLB format/block-snow-large.glb",
+      "position": [
+        25,
+        4,
+        -45
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-long",
+      "path": "assets/Models/GLB format/block-snow-long.glb",
+      "position": [
+        0,
+        0,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-low-hexagon",
+      "path": "assets/Models/GLB format/block-snow-low-hexagon.glb",
+      "position": [
+        5,
+        2,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-low-large",
+      "path": "assets/Models/GLB format/block-snow-low-large.glb",
+      "position": [
+        10,
+        4,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-low-long",
+      "path": "assets/Models/GLB format/block-snow-low-long.glb",
+      "position": [
+        15,
+        0,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-low-narrow",
+      "path": "assets/Models/GLB format/block-snow-low-narrow.glb",
+      "position": [
+        20,
+        2,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-low",
+      "path": "assets/Models/GLB format/block-snow-low.glb",
+      "position": [
+        25,
+        4,
+        -50
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-narrow",
+      "path": "assets/Models/GLB format/block-snow-narrow.glb",
+      "position": [
+        0,
+        0,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-corner",
+      "path": "assets/Models/GLB format/block-snow-overhang-corner.glb",
+      "position": [
+        5,
+        2,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-edge",
+      "path": "assets/Models/GLB format/block-snow-overhang-edge.glb",
+      "position": [
+        10,
+        4,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-hexagon",
+      "path": "assets/Models/GLB format/block-snow-overhang-hexagon.glb",
+      "position": [
+        15,
+        0,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large-slope-narrow",
+      "path": "assets/Models/GLB format/block-snow-overhang-large-slope-narrow.glb",
+      "position": [
+        20,
+        2,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large-slope-steep-narrow",
+      "path": "assets/Models/GLB format/block-snow-overhang-large-slope-steep-narrow.glb",
+      "position": [
+        25,
+        4,
+        -55
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large-slope-steep",
+      "path": "assets/Models/GLB format/block-snow-overhang-large-slope-steep.glb",
+      "position": [
+        0,
+        0,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large-slope",
+      "path": "assets/Models/GLB format/block-snow-overhang-large-slope.glb",
+      "position": [
+        5,
+        2,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large-tall",
+      "path": "assets/Models/GLB format/block-snow-overhang-large-tall.glb",
+      "position": [
+        10,
+        4,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-large",
+      "path": "assets/Models/GLB format/block-snow-overhang-large.glb",
+      "position": [
+        15,
+        0,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-long",
+      "path": "assets/Models/GLB format/block-snow-overhang-long.glb",
+      "position": [
+        20,
+        2,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-low-hexagon",
+      "path": "assets/Models/GLB format/block-snow-overhang-low-hexagon.glb",
+      "position": [
+        25,
+        4,
+        -60
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-low-large",
+      "path": "assets/Models/GLB format/block-snow-overhang-low-large.glb",
+      "position": [
+        0,
+        0,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-low-long",
+      "path": "assets/Models/GLB format/block-snow-overhang-low-long.glb",
+      "position": [
+        5,
+        2,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-low-narrow",
+      "path": "assets/Models/GLB format/block-snow-overhang-low-narrow.glb",
+      "position": [
+        10,
+        4,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-low",
+      "path": "assets/Models/GLB format/block-snow-overhang-low.glb",
+      "position": [
+        15,
+        0,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow-overhang-narrow",
+      "path": "assets/Models/GLB format/block-snow-overhang-narrow.glb",
+      "position": [
+        20,
+        2,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "block-snow",
+      "path": "assets/Models/GLB format/block-snow.glb",
+      "position": [
+        25,
+        4,
+        -65
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "bomb",
+      "path": "assets/Models/GLB format/bomb.glb",
+      "position": [
+        0,
+        0,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "button-round",
+      "path": "assets/Models/GLB format/button-round.glb",
+      "position": [
+        5,
+        2,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "button-square",
+      "path": "assets/Models/GLB format/button-square.glb",
+      "position": [
+        10,
+        4,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chest",
+      "path": "assets/Models/GLB format/chest.glb",
+      "position": [
+        15,
+        0,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "coin-bronze",
+      "path": "assets/Models/GLB format/coin-bronze.glb",
+      "position": [
+        20,
+        2,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "coin-gold",
+      "path": "assets/Models/GLB format/coin-gold.glb",
+      "position": [
+        25,
+        4,
+        -70
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "coin-silver",
+      "path": "assets/Models/GLB format/coin-silver.glb",
+      "position": [
+        0,
+        0,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "crate-item-strong",
+      "path": "assets/Models/GLB format/crate-item-strong.glb",
+      "position": [
+        5,
+        2,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "crate-item",
+      "path": "assets/Models/GLB format/crate-item.glb",
+      "position": [
+        10,
+        4,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "crate-strong",
+      "path": "assets/Models/GLB format/crate-strong.glb",
+      "position": [
+        15,
+        0,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "crate",
+      "path": "assets/Models/GLB format/crate.glb",
+      "position": [
+        20,
+        2,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "door-large-open",
+      "path": "assets/Models/GLB format/door-large-open.glb",
+      "position": [
+        25,
+        4,
+        -75
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "door-open",
+      "path": "assets/Models/GLB format/door-open.glb",
+      "position": [
+        0,
+        0,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "door-rotate-large",
+      "path": "assets/Models/GLB format/door-rotate-large.glb",
+      "position": [
+        5,
+        2,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "door-rotate",
+      "path": "assets/Models/GLB format/door-rotate.glb",
+      "position": [
+        10,
+        4,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-broken",
+      "path": "assets/Models/GLB format/fence-broken.glb",
+      "position": [
+        15,
+        0,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-corner-curved",
+      "path": "assets/Models/GLB format/fence-corner-curved.glb",
+      "position": [
+        20,
+        2,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-corner",
+      "path": "assets/Models/GLB format/fence-corner.glb",
+      "position": [
+        25,
+        4,
+        -80
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-low-broken",
+      "path": "assets/Models/GLB format/fence-low-broken.glb",
+      "position": [
+        0,
+        0,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-low-corner-curved",
+      "path": "assets/Models/GLB format/fence-low-corner-curved.glb",
+      "position": [
+        5,
+        2,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-low-corner",
+      "path": "assets/Models/GLB format/fence-low-corner.glb",
+      "position": [
+        10,
+        4,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-low-straight",
+      "path": "assets/Models/GLB format/fence-low-straight.glb",
+      "position": [
+        15,
+        0,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "fence-straight",
+      "path": "assets/Models/GLB format/fence-straight.glb",
+      "position": [
+        20,
+        2,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "flag",
+      "path": "assets/Models/GLB format/flag.glb",
+      "position": [
+        25,
+        4,
+        -85
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "flowers-tall",
+      "path": "assets/Models/GLB format/flowers-tall.glb",
+      "position": [
+        0,
+        0,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "flowers",
+      "path": "assets/Models/GLB format/flowers.glb",
+      "position": [
+        5,
+        2,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "grass",
+      "path": "assets/Models/GLB format/grass.glb",
+      "position": [
+        10,
+        4,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "heart",
+      "path": "assets/Models/GLB format/heart.glb",
+      "position": [
+        15,
+        0,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "hedge-corner",
+      "path": "assets/Models/GLB format/hedge-corner.glb",
+      "position": [
+        20,
+        2,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "hedge",
+      "path": "assets/Models/GLB format/hedge.glb",
+      "position": [
+        25,
+        4,
+        -90
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "jewel",
+      "path": "assets/Models/GLB format/jewel.glb",
+      "position": [
+        0,
+        0,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "key",
+      "path": "assets/Models/GLB format/key.glb",
+      "position": [
+        5,
+        2,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ladder-broken",
+      "path": "assets/Models/GLB format/ladder-broken.glb",
+      "position": [
+        10,
+        4,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ladder-long",
+      "path": "assets/Models/GLB format/ladder-long.glb",
+      "position": [
+        15,
+        0,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "ladder",
+      "path": "assets/Models/GLB format/ladder.glb",
+      "position": [
+        20,
+        2,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "lever",
+      "path": "assets/Models/GLB format/lever.glb",
+      "position": [
+        25,
+        4,
+        -95
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "lock",
+      "path": "assets/Models/GLB format/lock.glb",
+      "position": [
+        0,
+        0,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "mushrooms",
+      "path": "assets/Models/GLB format/mushrooms.glb",
+      "position": [
+        5,
+        2,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "plant",
+      "path": "assets/Models/GLB format/plant.glb",
+      "position": [
+        10,
+        4,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "platform-fortified",
+      "path": "assets/Models/GLB format/platform-fortified.glb",
+      "position": [
+        15,
+        0,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "platform-overhang",
+      "path": "assets/Models/GLB format/platform-overhang.glb",
+      "position": [
+        20,
+        2,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "platform-ramp",
+      "path": "assets/Models/GLB format/platform-ramp.glb",
+      "position": [
+        25,
+        4,
+        -100
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "platform",
+      "path": "assets/Models/GLB format/platform.glb",
+      "position": [
+        0,
+        0,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "poles",
+      "path": "assets/Models/GLB format/poles.glb",
+      "position": [
+        5,
+        2,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "rocks",
+      "path": "assets/Models/GLB format/rocks.glb",
+      "position": [
+        10,
+        4,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "saw",
+      "path": "assets/Models/GLB format/saw.glb",
+      "position": [
+        15,
+        0,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "sign",
+      "path": "assets/Models/GLB format/sign.glb",
+      "position": [
+        20,
+        2,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "spike-block-wide",
+      "path": "assets/Models/GLB format/spike-block-wide.glb",
+      "position": [
+        25,
+        4,
+        -105
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "spike-block",
+      "path": "assets/Models/GLB format/spike-block.glb",
+      "position": [
+        0,
+        0,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "stones",
+      "path": "assets/Models/GLB format/stones.glb",
+      "position": [
+        5,
+        2,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "trap-spikes-large",
+      "path": "assets/Models/GLB format/trap-spikes-large.glb",
+      "position": [
+        10,
+        4,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "trap-spikes",
+      "path": "assets/Models/GLB format/trap-spikes.glb",
+      "position": [
+        15,
+        0,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree-pine-small",
+      "path": "assets/Models/GLB format/tree-pine-small.glb",
+      "position": [
+        20,
+        2,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree-pine-snow-small",
+      "path": "assets/Models/GLB format/tree-pine-snow-small.glb",
+      "position": [
+        25,
+        4,
+        -110
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree-pine-snow",
+      "path": "assets/Models/GLB format/tree-pine-snow.glb",
+      "position": [
+        0,
+        0,
+        -115
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree-pine",
+      "path": "assets/Models/GLB format/tree-pine.glb",
+      "position": [
+        5,
+        2,
+        -115
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree-snow",
+      "path": "assets/Models/GLB format/tree-snow.glb",
+      "position": [
+        10,
+        4,
+        -115
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "tree",
+      "path": "assets/Models/GLB format/tree.glb",
+      "position": [
+        15,
+        0,
+        -115
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+}

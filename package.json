@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/cannon": "^6.6.0",
+    "@react-three/rapier": "^1.4.0",
     "@react-three/drei": "^9.96.0",
     "@react-three/fiber": "^8.15.12",
     "leva": "^0.9.35",

@@ -1,29 +1,13 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useBox } from '@react-three/cannon'
-import map4Data from '../../map4.json'
+import { RigidBody } from '@react-three/rapier'
+import * as THREE from 'three'
 
 function Player() {
-  const playerStart = map4Data.playerStart || { x: 0, y: 1.5, z: 0 }
+  const playerRef = useRef()
+  const [isGrounded, setIsGrounded] = useState(false)
+  const [velocity, setVelocity] = useState([0, 0, 0])
   
-  const [ref, api] = useBox(() => ({
-    mass: 1,
-    position: [playerStart.x, playerStart.y, playerStart.z],
-    args: [0.8, 1.6, 0.8],
-    material: {
-      friction: 0.1,
-      restitution: 0.1
-    }
-  }))
-
-  const velocity = useRef([0, 0, 0])
-  const position = useRef([playerStart.x, playerStart.y, playerStart.z])
-  
-  useEffect(() => {
-    api.velocity.subscribe((v) => velocity.current = v)
-    api.position.subscribe((p) => position.current = p)
-  }, [api])
-
   const keys = useRef({
     forward: false,
     backward: false,
@@ -92,40 +76,86 @@ function Player() {
   }, [])
 
   useFrame(() => {
+    if (!playerRef.current) return
+    
     const { forward, backward, left, right, jump } = keys.current
     
-    const moveSpeed = 6
-    const jumpForce = 12
+    const moveSpeed = 8
+    const jumpForce = 15
+    const airControl = 0.3
     
+    // Get current velocity
+    const currentVel = playerRef.current.linvel()
+    setVelocity([currentVel.x, currentVel.y, currentVel.z])
+    
+    // Check if grounded (simple check based on Y velocity)
+    const grounded = Math.abs(currentVel.y) < 0.5
+    setIsGrounded(grounded)
+    
+    // Calculate movement direction
     let moveX = 0
     let moveZ = 0
     
-    if (forward) moveZ -= moveSpeed
-    if (backward) moveZ += moveSpeed
-    if (left) moveX -= moveSpeed
-    if (right) moveX += moveSpeed
+    if (forward) moveZ -= 1
+    if (backward) moveZ += 1
+    if (left) moveX -= 1
+    if (right) moveX += 1
     
-    // Apply movement with some air control
-    const airControl = Math.abs(velocity.current[1]) < 0.1 ? 1 : 0.3
-    api.velocity.set(moveX * airControl, velocity.current[1], moveZ * airControl)
+    // Normalize diagonal movement
+    if (moveX !== 0 && moveZ !== 0) {
+      moveX *= 0.707
+      moveZ *= 0.707
+    }
     
-    // Jump (only if not already jumping)
-    if (jump && Math.abs(velocity.current[1]) < 0.1) {
-      api.velocity.set(velocity.current[0], jumpForce, velocity.current[2])
+    // Apply movement
+    const controlFactor = grounded ? 1 : airControl
+    const newVelX = moveX * moveSpeed * controlFactor
+    const newVelZ = moveZ * moveSpeed * controlFactor
+    
+    playerRef.current.setLinvel({
+      x: newVelX,
+      y: currentVel.y,
+      z: newVelZ
+    }, true)
+    
+    // Jump
+    if (jump && grounded) {
+      playerRef.current.setLinvel({
+        x: currentVel.x,
+        y: jumpForce,
+        z: currentVel.z
+      }, true)
     }
     
     // Reset player if they fall too far
-    if (position.current[1] < -20) {
-      api.position.set(playerStart.x, playerStart.y, playerStart.z)
-      api.velocity.set(0, 0, 0)
+    const position = playerRef.current.translation()
+    if (position.y < -10) {
+      playerRef.current.setTranslation({ x: 0, y: 5, z: 0 }, true)
+      playerRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true)
     }
   })
 
   return (
-    <mesh ref={ref} castShadow>
-      <capsuleGeometry args={[0.4, 1.2]} />
-      <meshStandardMaterial color="#4a90e2" />
-    </mesh>
+    <RigidBody
+      ref={playerRef}
+      position={[0, 3, 0]}
+      type="dynamic"
+      colliders="ball"
+      mass={1}
+      restitution={0.1}
+      friction={0.8}
+      linearDamping={0.5}
+      angularDamping={0.5}
+    >
+      <mesh castShadow>
+        <capsuleGeometry args={[0.5, 1]} />
+        <meshStandardMaterial 
+          color={isGrounded ? "#4a90e2" : "#e24a4a"} 
+          emissive={isGrounded ? "#000000" : "#330000"}
+          emissiveIntensity={isGrounded ? 0 : 0.2}
+        />
+      </mesh>
+    </RigidBody>
   )
 }
 

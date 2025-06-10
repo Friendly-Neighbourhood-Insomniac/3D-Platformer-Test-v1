@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment, Grid } from '@react-three/drei'
-import { Physics } from '@react-three/cannon'
+import { OrbitControls, Environment, Grid, Sky } from '@react-three/drei'
+import { Physics } from '@react-three/rapier'
 import Scene from './components/Scene'
 import Player from './components/Player'
 import UI from './components/UI'
@@ -11,7 +11,7 @@ function App() {
     <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       <Canvas
         camera={{ 
-          position: [15, 8, 15], 
+          position: [0, 8, 15], 
           fov: 60,
           near: 0.1,
           far: 1000
@@ -19,21 +19,27 @@ function App() {
         shadows
       >
         <Suspense fallback={null}>
-          <Environment preset="forest" />
-          <ambientLight intensity={0.3} />
-          <directionalLight 
-            position={[20, 20, 10]} 
-            intensity={1.2}
-            castShadow
-            shadow-mapSize={[2048, 2048]}
-            shadow-camera-far={100}
-            shadow-camera-left={-30}
-            shadow-camera-right={30}
-            shadow-camera-top={30}
-            shadow-camera-bottom={-30}
+          <Sky 
+            distance={450000}
+            sunPosition={[0, 1, 0]}
+            inclination={0}
+            azimuth={0.25}
           />
           
-          <Physics gravity={[0, -25, 0]} broadphase="SAP">
+          <ambientLight intensity={0.4} />
+          <directionalLight 
+            position={[50, 50, 25]} 
+            intensity={1.5}
+            castShadow
+            shadow-mapSize={[4096, 4096]}
+            shadow-camera-far={200}
+            shadow-camera-left={-50}
+            shadow-camera-right={50}
+            shadow-camera-top={50}
+            shadow-camera-bottom={-50}
+          />
+          
+          <Physics gravity={[0, -30, 0]} debug={false}>
             <Scene />
             <Player />
           </Physics>
@@ -42,13 +48,14 @@ function App() {
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
-            maxPolarAngle={Math.PI / 2}
-            minDistance={5}
-            maxDistance={50}
+            maxPolarAngle={Math.PI / 2.2}
+            minDistance={8}
+            maxDistance={80}
+            target={[40, 5, 0]}
           />
           
           <Grid 
-            args={[200, 200]} 
+            args={[300, 300]} 
             position={[0, -0.01, 0]}
             cellSize={2}
             cellThickness={0.5}
@@ -56,7 +63,7 @@ function App() {
             sectionSize={10}
             sectionThickness={1}
             sectionColor="#9d4b4b"
-            fadeDistance={100}
+            fadeDistance={150}
             fadeStrength={1}
             infiniteGrid
           />

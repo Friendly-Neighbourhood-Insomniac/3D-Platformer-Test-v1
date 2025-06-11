@@ -1,75 +1,22 @@
 import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { RigidBody } from '@react-three/rapier'
-import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
-// Placeholder Geometry Component for missing GLB models
-function PlaceholderModel({ position = [0, 0, 0], rotation = [0, 0, 0], scale = [1, 1, 1], type = "fixed", color = "#8B4513", geometry = "box" }) {
-  const getGeometry = () => {
-    switch (geometry) {
-      case "cylinder":
-        return <cylinderGeometry args={[0.5, 0.5, 1, 8]} />
-      case "cone":
-        return <coneGeometry args={[0.5, 1, 8]} />
-      case "sphere":
-        return <sphereGeometry args={[0.5, 8, 6]} />
-      default:
-        return <boxGeometry args={[1, 1, 1]} />
-    }
-  }
-
+// Basic Geometry Platform Component
+function Platform({ position = [0, 0, 0], size = [10, 2, 10], color = "#32CD32", type = "fixed" }) {
   return (
-    <RigidBody type={type} position={position} rotation={rotation}>
-      <mesh scale={scale} castShadow receiveShadow>
-        {getGeometry()}
+    <RigidBody type={type} position={position}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={size} />
         <meshStandardMaterial color={color} />
       </mesh>
     </RigidBody>
   )
 }
 
-// GLB Model Component with fallback
-function GLBModel({ path, position = [0, 0, 0], rotation = [0, 0, 0], scale = [1, 1, 1], type = "fixed" }) {
-  try {
-    const { scene } = useGLTF(path)
-    const clonedScene = scene.clone()
-    
-    return (
-      <RigidBody type={type} position={position} rotation={rotation}>
-        <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
-      </RigidBody>
-    )
-  } catch (error) {
-    // Fallback to placeholder if GLB fails to load
-    const getPlaceholderProps = (path) => {
-      if (path.includes('tree')) return { color: "#228B22", geometry: "cylinder" }
-      if (path.includes('coin')) return { color: "#FFD700", geometry: "cylinder", scale: [scale[0] * 0.5, scale[1] * 0.1, scale[2] * 0.5] }
-      if (path.includes('grass')) return { color: "#32CD32", geometry: "box" }
-      if (path.includes('snow')) return { color: "#F0F8FF", geometry: "box" }
-      if (path.includes('platform')) return { color: "#8B4513", geometry: "box" }
-      if (path.includes('rock')) return { color: "#696969", geometry: "sphere" }
-      if (path.includes('flower')) return { color: "#FF69B4", geometry: "cone" }
-      if (path.includes('crate')) return { color: "#8B4513", geometry: "box" }
-      if (path.includes('barrel')) return { color: "#654321", geometry: "cylinder" }
-      if (path.includes('chest')) return { color: "#8B4513", geometry: "box" }
-      if (path.includes('heart')) return { color: "#FF0000", geometry: "sphere" }
-      if (path.includes('key')) return { color: "#FFD700", geometry: "cylinder" }
-      if (path.includes('jewel')) return { color: "#9932CC", geometry: "sphere" }
-      if (path.includes('flag')) return { color: "#FF0000", geometry: "cone" }
-      if (path.includes('ladder')) return { color: "#8B4513", geometry: "cylinder" }
-      if (path.includes('spike')) return { color: "#FF4500", geometry: "cone" }
-      if (path.includes('moving')) return { color: "#4169E1", geometry: "box" }
-      return { color: "#8B4513", geometry: "box" }
-    }
-
-    const placeholderProps = getPlaceholderProps(path)
-    return <PlaceholderModel position={position} rotation={rotation} scale={scale} type={type} {...placeholderProps} />
-  }
-}
-
-// Moving Platform Component with fallback
-function MovingGLBModel({ path, startPos, endPos, scale = [1, 1, 1], speed = 1 }) {
+// Moving Platform Component
+function MovingPlatform({ startPos, endPos, size = [8, 2, 8], color = "#4169E1", speed = 1 }) {
   const ref = useRef()
   
   useFrame((state) => {
@@ -87,29 +34,18 @@ function MovingGLBModel({ path, startPos, endPos, scale = [1, 1, 1], speed = 1 }
     ref.current.setTranslation(currentPos, true)
   })
 
-  try {
-    const { scene } = useGLTF(path)
-    const clonedScene = scene.clone()
-    
-    return (
-      <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
-        <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
-      </RigidBody>
-    )
-  } catch (error) {
-    return (
-      <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
-        <mesh scale={scale} castShadow receiveShadow>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color="#4169E1" />
-        </mesh>
-      </RigidBody>
-    )
-  }
+  return (
+    <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={size} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    </RigidBody>
+  )
 }
 
-// Collectible Component with animation and fallback
-function AnimatedCollectible({ path, position, scale = [1, 1, 1] }) {
+// Collectible Component with animation
+function Collectible({ position, color = "#FFD700", type = "coin" }) {
   const ref = useRef()
   
   useFrame((state) => {
@@ -119,215 +55,348 @@ function AnimatedCollectible({ path, position, scale = [1, 1, 1] }) {
     }
   })
 
-  const getCollectibleProps = (path) => {
-    if (path.includes('coin-bronze')) return { color: "#CD7F32", geometry: "cylinder" }
-    if (path.includes('coin-silver')) return { color: "#C0C0C0", geometry: "cylinder" }
-    if (path.includes('coin-gold')) return { color: "#FFD700", geometry: "cylinder" }
-    if (path.includes('jewel')) return { color: "#9932CC", geometry: "sphere" }
-    if (path.includes('heart')) return { color: "#FF0000", geometry: "sphere" }
-    if (path.includes('key')) return { color: "#FFD700", geometry: "cylinder" }
-    return { color: "#FFD700", geometry: "cylinder" }
+  const getGeometry = () => {
+    switch (type) {
+      case "coin":
+        return <cylinderGeometry args={[0.8, 0.8, 0.2, 8]} />
+      case "gem":
+        return <octahedronGeometry args={[0.8]} />
+      case "heart":
+        return <sphereGeometry args={[0.6]} />
+      default:
+        return <cylinderGeometry args={[0.8, 0.8, 0.2, 8]} />
+    }
   }
-
-  const props = getCollectibleProps(path)
   
   return (
     <group ref={ref} position={position}>
-      <mesh scale={[scale[0] * 0.5, scale[1] * 0.1, scale[2] * 0.5]} castShadow>
-        <cylinderGeometry args={[0.5, 0.5, 0.2, 8]} />
-        <meshStandardMaterial color={props.color} />
+      <mesh castShadow>
+        {getGeometry()}
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
       </mesh>
     </group>
+  )
+}
+
+// Obstacle Component
+function Obstacle({ position, size = [2, 2, 2], color = "#8B4513", type = "box" }) {
+  const getGeometry = () => {
+    switch (type) {
+      case "cylinder":
+        return <cylinderGeometry args={[size[0], size[0], size[1], 8]} />
+      case "cone":
+        return <coneGeometry args={[size[0], size[1], 8]} />
+      case "sphere":
+        return <sphereGeometry args={[size[0]]} />
+      default:
+        return <boxGeometry args={size} />
+    }
+  }
+
+  return (
+    <RigidBody type="fixed" position={position}>
+      <mesh castShadow receiveShadow>
+        {getGeometry()}
+        <meshStandardMaterial color={color} />
+      </mesh>
+    </RigidBody>
+  )
+}
+
+// Decoration Component (non-collidable)
+function Decoration({ position, size = [2, 4, 2], color = "#228B22", type = "tree" }) {
+  const getGeometry = () => {
+    switch (type) {
+      case "tree":
+        return (
+          <group>
+            <mesh position={[0, 0, 0]}>
+              <cylinderGeometry args={[0.3, 0.3, 2, 8]} />
+              <meshStandardMaterial color="#8B4513" />
+            </mesh>
+            <mesh position={[0, 2, 0]}>
+              <coneGeometry args={[1.5, 3, 8]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </group>
+        )
+      case "rock":
+        return <sphereGeometry args={size} />
+      case "flower":
+        return (
+          <group>
+            <mesh position={[0, 0, 0]}>
+              <cylinderGeometry args={[0.1, 0.1, 1, 6]} />
+              <meshStandardMaterial color="#228B22" />
+            </mesh>
+            <mesh position={[0, 1, 0]}>
+              <sphereGeometry args={[0.3]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </group>
+        )
+      default:
+        return <boxGeometry args={size} />
+    }
+  }
+
+  return (
+    <group position={position}>
+      <mesh castShadow receiveShadow>
+        {getGeometry()}
+      </mesh>
+    </group>
+  )
+}
+
+// Ramp Component
+function Ramp({ position, size = [10, 2, 10], rotation = [0, 0, 0], color = "#32CD32" }) {
+  return (
+    <RigidBody type="fixed" position={position} rotation={rotation}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={size} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    </RigidBody>
+  )
+}
+
+// Hazard Component
+function Hazard({ position, size = [2, 1, 2], color = "#FF4500", type = "spikes" }) {
+  const getGeometry = () => {
+    switch (type) {
+      case "spikes":
+        return <coneGeometry args={[size[0], size[1], 4]} />
+      case "saw":
+        return <cylinderGeometry args={[size[0], size[0], 0.2, 16]} />
+      default:
+        return <coneGeometry args={[size[0], size[1], 4]} />
+    }
+  }
+
+  const ref = useRef()
+  
+  useFrame((state) => {
+    if (ref.current && type === "saw") {
+      ref.current.rotation.z = state.clock.elapsedTime * 5
+    }
+  })
+
+  return (
+    <RigidBody type="fixed" position={position}>
+      <mesh ref={ref} castShadow receiveShadow>
+        {getGeometry()}
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+      </mesh>
+    </RigidBody>
   )
 }
 
 function Scene() {
   return (
     <group>
-      {/* =================================
-          GROUND ZONE (Y: 0-50) - Forest/Grassland
-          ================================= */}
+      {/* ===== GROUND ZONE (Y: 0-50) - Forest/Grassland ===== */}
       
       {/* Base Terrain - Large grass platforms */}
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[0, 0, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[100, 0, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[200, 0, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[300, 0, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[400, 0, 0]} scale={[5, 5, 1]} />
+      <Platform position={[0, 0, 0]} size={[40, 4, 40]} color="#32CD32" />
+      <Platform position={[100, 0, 0]} size={[30, 4, 30]} color="#228B22" />
+      <Platform position={[200, 0, 0]} size={[35, 4, 35]} color="#32CD32" />
+      <Platform position={[300, 0, 0]} size={[25, 4, 25]} color="#228B22" />
+      <Platform position={[400, 0, 0]} size={[30, 4, 30]} color="#32CD32" />
       
       {/* Side platforms for exploration */}
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[50, 10, 100]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[150, 15, -100]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[250, 20, 100]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[350, 15, -100]} scale={[3, 1, 3]} />
+      <Platform position={[50, 10, 100]} size={[15, 2, 15]} color="#90EE90" />
+      <Platform position={[150, 15, -100]} size={[15, 2, 15]} color="#90EE90" />
+      <Platform position={[250, 20, 100]} size={[15, 2, 15]} color="#90EE90" />
+      <Platform position={[350, 15, -100]} size={[15, 2, 15]} color="#90EE90" />
+      
+      {/* Stepping stones */}
+      <Platform position={[75, 8, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[125, 12, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[175, 16, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[225, 20, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[275, 24, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[325, 28, 0]} size={[8, 2, 8]} color="#228B22" />
+      <Platform position={[375, 32, 0]} size={[8, 2, 8]} color="#228B22" />
       
       {/* Forest decorations */}
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[25, 10, 50]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[125, 10, -75]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[225, 10, 75]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[325, 10, -50]} scale={[2.2, 2.2, 2.2]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[425, 10, 60]} scale={[1.8, 1.8, 1.8]} />
+      <Decoration position={[25, 6, 50]} type="tree" color="#228B22" />
+      <Decoration position={[125, 6, -75]} type="tree" color="#228B22" />
+      <Decoration position={[225, 6, 75]} type="tree" color="#006400" />
+      <Decoration position={[325, 6, -50]} type="tree" color="#228B22" />
+      <Decoration position={[425, 6, 60]} type="tree" color="#006400" />
       
-      {/* Vegetation and details */}
-      <GLBModel path="/assets/Models/GLB format/flowers.glb" position={[75, 10, -25]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/grass.glb" position={[175, 10, 25]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/mushrooms.glb" position={[275, 10, -40]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/plant.glb" position={[375, 10, 35]} scale={[1.3, 1.3, 1.3]} />
+      {/* Flowers and vegetation */}
+      <Decoration position={[75, 6, -25]} type="flower" color="#FF69B4" />
+      <Decoration position={[175, 6, 25]} type="flower" color="#FFB6C1" />
+      <Decoration position={[275, 6, -40]} type="flower" color="#FF1493" />
+      <Decoration position={[375, 6, 35]} type="flower" color="#FF69B4" />
       
-      {/* Interactive elements */}
-      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[100, 10, 100]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/crate.glb" position={[200, 10, -80]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[300, 10, 90]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[400, 10, -70]} scale={[1.2, 1.2, 1.2]} />
+      {/* Interactive obstacles */}
+      <Obstacle position={[100, 8, 100]} size={[3, 3, 3]} color="#8B4513" type="box" />
+      <Obstacle position={[200, 8, -80]} size={[2, 4, 2]} color="#654321" type="cylinder" />
+      <Obstacle position={[300, 8, 90]} size={[4, 2, 4]} color="#8B4513" type="box" />
+      <Obstacle position={[400, 8, -70]} size={[3, 3, 3]} color="#654321" type="box" />
       
       {/* Ground zone collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[50, 15, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[150, 15, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[250, 15, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[350, 15, 0]} scale={[1.2, 1.2, 1.2]} />
+      <Collectible position={[50, 15, 0]} color="#CD7F32" type="coin" />
+      <Collectible position={[150, 20, 0]} color="#C0C0C0" type="coin" />
+      <Collectible position={[250, 25, 0]} color="#FFD700" type="coin" />
+      <Collectible position={[350, 20, 0]} color="#FF0000" type="heart" />
       
       {/* Transition ramp to mid zone */}
-      <GLBModel path="/assets/Models/GLB format/block-grass-large-slope.glb" position={[450, 5, 0]} scale={[3, 3, 3]} rotation={[0, 0, 0]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[480, 20, 0]} scale={[2, 1, 2]} />
+      <Ramp position={[450, 15, 0]} size={[20, 4, 20]} rotation={[0, 0, 0.2]} color="#228B22" />
+      <Platform position={[480, 35, 0]} size={[15, 2, 15]} color="#228B22" />
       
-      {/* =================================
-          MID ZONE (Y: 50-150) - Snow/Mountain Region
-          ================================= */}
+      {/* ===== MID ZONE (Y: 50-150) - Snow/Mountain Region ===== */}
       
       {/* Snow base platforms */}
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[0, 50, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[100, 55, 0]} scale={[4, 3, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[200, 60, 0]} scale={[5, 4, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[300, 65, 0]} scale={[4, 3, 1]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[400, 70, 0]} scale={[5, 4, 1]} />
+      <Platform position={[0, 50, 0]} size={[30, 6, 30]} color="#F0F8FF" />
+      <Platform position={[100, 55, 0]} size={[25, 4, 25]} color="#E6E6FA" />
+      <Platform position={[200, 60, 0]} size={[30, 6, 30]} color="#F0F8FF" />
+      <Platform position={[300, 65, 0]} size={[25, 4, 25]} color="#E6E6FA" />
+      <Platform position={[400, 70, 0]} size={[30, 6, 30]} color="#F0F8FF" />
       
       {/* Snow stepped platforms */}
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[50, 58, 75]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[50, 58, -75]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[150, 63, 60]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[150, 63, -60]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[250, 68, 80]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[250, 68, -80]} scale={[2, 1, 2]} />
+      <Platform position={[50, 58, 75]} size={[12, 2, 12]} color="#F5F5F5" />
+      <Platform position={[50, 58, -75]} size={[12, 2, 12]} color="#F5F5F5" />
+      <Platform position={[150, 63, 60]} size={[12, 2, 12]} color="#F5F5F5" />
+      <Platform position={[150, 63, -60]} size={[12, 2, 12]} color="#F5F5F5" />
+      <Platform position={[250, 68, 80]} size={[12, 2, 12]} color="#F5F5F5" />
+      <Platform position={[250, 68, -80]} size={[12, 2, 12]} color="#F5F5F5" />
       
-      {/* Snow trees and decorations */}
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[75, 60, 40]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/tree-snow.glb" position={[175, 65, -45]} scale={[1.6, 1.6, 1.6]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow-small.glb" position={[275, 70, 50]} scale={[1.4, 1.4, 1.4]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[375, 75, -40]} scale={[1.7, 1.7, 1.7]} />
+      {/* Snow decorations (ice crystals and rocks) */}
+      <Decoration position={[75, 65, 40]} type="rock" size={[2, 2, 2]} color="#B0C4DE" />
+      <Decoration position={[175, 70, -45]} type="rock" size={[1.8, 1.8, 1.8]} color="#778899" />
+      <Decoration position={[275, 75, 50]} type="rock" size={[1.5, 1.5, 1.5]} color="#B0C4DE" />
+      <Decoration position={[375, 80, -40]} type="rock" size={[2.2, 2.2, 2.2]} color="#778899" />
       
       {/* Snow obstacles and hazards */}
-      <GLBModel path="/assets/Models/GLB format/rocks.glb" position={[125, 58, -25]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/stones.glb" position={[225, 63, 20]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/trap-spikes.glb" position={[200, 65, 300]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/spike-block.glb" position={[325, 70, -15]} scale={[1.2, 1.2, 1.2]} />
+      <Obstacle position={[125, 65, -25]} size={[4, 4, 4]} color="#696969" type="sphere" />
+      <Obstacle position={[225, 70, 20]} size={[3, 3, 3]} color="#708090" type="sphere" />
+      <Hazard position={[200, 67, 0]} size={[1.5, 3, 1.5]} color="#FF4500" type="spikes" />
+      <Hazard position={[325, 75, -15]} size={[2, 2, 2]} color="#FF6347" type="spikes" />
       
       {/* Mid zone collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[50, 65, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[150, 70, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[250, 75, 0]} scale={[1.3, 1.3, 1.3]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[350, 80, 0]} scale={[1.2, 1.2, 1.2]} />
+      <Collectible position={[50, 70, 0]} color="#C0C0C0" type="coin" />
+      <Collectible position={[150, 75, 0]} color="#FFD700" type="coin" />
+      <Collectible position={[250, 80, 0]} color="#9932CC" type="gem" />
+      <Collectible position={[350, 85, 0]} color="#FFD700" type="gem" />
       
       {/* Moving platforms in mid zone */}
-      <MovingGLBModel 
-        path="/assets/Models/GLB format/block-moving.glb" 
-        startPos={[125, 70, 0]} 
-        endPos={[175, 70, 0]} 
-        scale={[2, 1, 2]} 
+      <MovingPlatform 
+        startPos={[125, 75, 0]} 
+        endPos={[175, 75, 0]} 
+        size={[12, 2, 12]} 
+        color="#4169E1" 
         speed={1.2} 
       />
-      <MovingGLBModel 
-        path="/assets/Models/GLB format/block-moving-blue.glb" 
-        startPos={[275, 78, -40]} 
-        endPos={[325, 78, -40]} 
-        scale={[2, 1, 2]} 
+      <MovingPlatform 
+        startPos={[275, 83, -40]} 
+        endPos={[325, 83, -40]} 
+        size={[12, 2, 12]} 
+        color="#1E90FF" 
         speed={1.0} 
       />
       
       {/* Transition to summit */}
-      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[400, 75, 400]} scale={[2, 3, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large-slope.glb" position={[430, 85, 0]} scale={[2, 2, 2]} />
+      <Platform position={[430, 85, 0]} size={[15, 2, 15]} color="#E6E6FA" />
+      <Ramp position={[450, 95, 0]} size={[15, 4, 15]} rotation={[0, 0, 0.3]} color="#F0F8FF" />
       
-      {/* =================================
-          SUMMIT ZONE (Y: 150-500) - Sky/Cloud Platforms
-          ================================= */}
+      {/* ===== SUMMIT ZONE (Y: 150-300) - Sky/Cloud Platforms ===== */}
       
       {/* Summit base platforms */}
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[0, 150, 0]} scale={[5, 5, 1]} />
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[100, 160, 0]} scale={[4, 3, 1]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[200, 170, 0]} scale={[5, 4, 1]} />
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[300, 180, 0]} scale={[6, 5, 1]} />
+      <Platform position={[0, 150, 0]} size={[25, 4, 25]} color="#87CEEB" />
+      <Platform position={[100, 160, 0]} size={[20, 4, 20]} color="#B0E0E6" />
+      <Platform position={[200, 170, 0]} size={[25, 4, 25]} color="#87CEEB" />
+      <Platform position={[300, 180, 0]} size={[30, 6, 30]} color="#B0E0E6" />
       
       {/* Floating platforms */}
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[50, 165, 60]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[50, 165, -60]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[150, 175, 50]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[150, 175, -50]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[250, 185, 70]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[250, 185, -70]} scale={[2, 1, 2]} />
+      <Platform position={[50, 165, 60]} size={[12, 2, 12]} color="#ADD8E6" />
+      <Platform position={[50, 165, -60]} size={[12, 2, 12]} color="#ADD8E6" />
+      <Platform position={[150, 175, 50]} size={[12, 2, 12]} color="#87CEFA" />
+      <Platform position={[150, 175, -50]} size={[12, 2, 12]} color="#87CEFA" />
+      <Platform position={[250, 185, 70]} size={[12, 2, 12]} color="#ADD8E6" />
+      <Platform position={[250, 185, -70]} size={[12, 2, 12]} color="#ADD8E6" />
       
       {/* Summit moving platforms - more challenging */}
-      <MovingGLBModel 
-        path="/assets/Models/GLB format/block-moving-large.glb" 
+      <MovingPlatform 
         startPos={[75, 170, 0]} 
         endPos={[125, 170, 0]} 
-        scale={[3, 1, 3]} 
+        size={[15, 2, 15]} 
+        color="#4169E1" 
         speed={1.5} 
       />
-      <MovingGLBModel 
-        path="/assets/Models/GLB format/block-moving-blue.glb" 
+      <MovingPlatform 
         startPos={[175, 180, -25]} 
         endPos={[225, 180, 25]} 
-        scale={[2, 1, 2]} 
+        size={[12, 2, 12]} 
+        color="#0000FF" 
         speed={1.8} 
       />
-      <MovingGLBModel 
-        path="/assets/Models/GLB format/block-moving.glb" 
+      <MovingPlatform 
         startPos={[275, 190, 0]} 
         endPos={[325, 190, 0]} 
-        scale={[2, 1, 2]} 
+        size={[12, 2, 12]} 
+        color="#1E90FF" 
         speed={2.0} 
       />
       
       {/* Summit hazards */}
-      <GLBModel path="/assets/Models/GLB format/trap-spikes-large.glb" position={[100, 165, 0]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/spike-block-wide.glb" position={[200, 175, 0]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/saw.glb" position={[250, 180, 0]} scale={[1.2, 1.2, 1.2]} />
+      <Hazard position={[100, 167, 0]} size={[2, 4, 2]} color="#FF4500" type="spikes" />
+      <Hazard position={[200, 177, 0]} size={[3, 3, 3]} color="#FF6347" type="spikes" />
+      <Hazard position={[250, 182, 0]} size={[2, 2, 2]} color="#FF0000" type="saw" />
       
       {/* Summit collectibles - high value */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[50, 170, 0]} scale={[1.8, 1.8, 1.8]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[150, 180, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[250, 190, 0]} scale={[1.8, 1.8, 1.8]} />
+      <Collectible position={[50, 175, 0]} color="#FFD700" type="coin" />
+      <Collectible position={[150, 185, 0]} color="#9932CC" type="gem" />
+      <Collectible position={[250, 195, 0]} color="#FFD700" type="coin" />
       
       {/* Final goal area */}
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[250, 200, 250]} scale={[8, 6, 8]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[250, 210, 250]} scale={[3, 3, 3]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[240, 206, 260]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[260, 206, 240]} scale={[2, 2, 2]} />
+      <Platform position={[400, 200, 0]} size={[40, 8, 40]} color="#FFD700" />
+      
+      {/* Victory flag */}
+      <group position={[400, 210, 0]}>
+        <mesh>
+          <cylinderGeometry args={[0.2, 0.2, 15, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 7, 2]}>
+          <boxGeometry args={[4, 3, 0.1]} />
+          <meshStandardMaterial color="#FF0000" />
+        </mesh>
+      </group>
+      
+      {/* Victory chests */}
+      <Obstacle position={[390, 208, 10]} size={[3, 2, 3]} color="#8B4513" type="box" />
+      <Obstacle position={[410, 208, -10]} size={[3, 2, 3]} color="#8B4513" type="box" />
       
       {/* Victory collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[245, 208, 255]} scale={[2, 2, 2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[255, 208, 245]} scale={[2, 2, 2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[250, 208, 250]} scale={[2, 2, 2]} />
+      <Collectible position={[395, 210, 5]} color="#9932CC" type="gem" />
+      <Collectible position={[405, 210, -5]} color="#9932CC" type="gem" />
+      <Collectible position={[400, 210, 0]} color="#FF0000" type="heart" />
       
-      {/* =================================
-          SECRET AREAS
-          ================================= */}
+      {/* ===== SECRET AREAS ===== */}
       
       {/* Secret area 1 - Hidden forest grove */}
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[100, 25, 150]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[150, 30, 150]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[100, 35, 160]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[150, 40, 140]} scale={[1.3, 1.3, 1.3]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[125, 40, 150]} scale={[1.5, 1.5, 1.5]} />
+      <Platform position={[100, 25, 150]} size={[15, 2, 15]} color="#32CD32" />
+      <Platform position={[150, 30, 150]} size={[12, 2, 12]} color="#228B22" />
+      <Decoration position={[100, 35, 160]} type="tree" color="#228B22" />
+      <Decoration position={[150, 40, 140]} type="tree" color="#006400" />
+      <Collectible position={[125, 40, 150]} color="#9932CC" type="gem" />
       
       {/* Secret area 2 - Snow cave */}
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[300, 90, -150]} scale={[4, 2, 4]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[300, 96, -150]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[310, 96, -160]} scale={[1.3, 1.3, 1.3]} />
+      <Platform position={[300, 90, -150]} size={[20, 4, 20]} color="#F0F8FF" />
+      <Obstacle position={[300, 96, -150]} size={[3, 2, 3]} color="#8B4513" type="box" />
+      <Collectible position={[310, 96, -160]} color="#FFD700" type="gem" />
       
-      {/* =================================
-          GROUND PLANE AND BOUNDARIES
-          ================================= */}
+      {/* Secret area 3 - Sky island */}
+      <Platform position={[200, 220, 150]} size={[20, 4, 20]} color="#87CEEB" />
+      <Decoration position={[200, 230, 160]} type="tree" color="#006400" />
+      <Collectible position={[200, 230, 140]} color="#9932CC" type="gem" />
+      <Collectible position={[210, 230, 150]} color="#FFD700" type="coin" />
+      
+      {/* ===== GROUND PLANE AND BOUNDARIES ===== */}
       
       {/* Ground plane */}
       <RigidBody type="fixed" position={[250, -25, 0]}>
@@ -337,15 +406,16 @@ function Scene() {
         </mesh>
       </RigidBody>
       
-      {/* Boundary walls */}
+      {/* Boundary walls using rocks */}
       {Array.from({length: 20}, (_, i) => {
         const x = i * 30 - 250
         return (
-          <GLBModel 
+          <Obstacle 
             key={`north-boundary-${i}`}
-            path="/assets/Models/GLB format/rocks.glb" 
             position={[x, 15, 250]} 
-            scale={[2, 3, 2]} 
+            size={[4, 6, 4]} 
+            color="#696969"
+            type="sphere"
           />
         )
       })}
@@ -353,47 +423,130 @@ function Scene() {
       {Array.from({length: 20}, (_, i) => {
         const x = i * 30 - 250
         return (
-          <GLBModel 
+          <Obstacle 
             key={`south-boundary-${i}`}
-            path="/assets/Models/GLB format/rocks.glb" 
             position={[x, 15, -250]} 
-            scale={[2, 3, 2]} 
+            size={[4, 6, 4]} 
+            color="#696969"
+            type="sphere"
           />
         )
       })}
       
-      {/* =================================
-          CHECKPOINT FLAGS
-          ================================= */}
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[450, 25, 10]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[400, 85, 10]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[300, 195, 10]} scale={[1.5, 1.5, 1.5]} />
+      {/* ===== CHECKPOINT FLAGS ===== */}
+      <group position={[450, 40, 10]}>
+        <mesh>
+          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 4, 1.5]}>
+          <boxGeometry args={[3, 2, 0.1]} />
+          <meshStandardMaterial color="#00FF00" />
+        </mesh>
+      </group>
       
-      {/* =================================
-          GUIDANCE SIGNS
-          ================================= */}
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[50, 15, 20]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[480, 25, 20]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[430, 90, 20]} scale={[1.2, 1.2, 1.2]} />
+      <group position={[400, 90, 10]}>
+        <mesh>
+          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 4, 1.5]}>
+          <boxGeometry args={[3, 2, 0.1]} />
+          <meshStandardMaterial color="#FFFF00" />
+        </mesh>
+      </group>
       
-      {/* =================================
-          INTERACTIVE ELEMENTS
-          ================================= */}
+      <group position={[300, 195, 10]}>
+        <mesh>
+          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 4, 1.5]}>
+          <boxGeometry args={[3, 2, 0.1]} />
+          <meshStandardMaterial color="#FF0000" />
+        </mesh>
+      </group>
       
-      {/* Levers and buttons for puzzles */}
-      <GLBModel path="/assets/Models/GLB format/lever.glb" position={[200, 15, 40]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/button-round.glb" position={[200, 70, 30]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/button-square.glb" position={[200, 185, 40]} scale={[1.2, 1.2, 1.2]} />
+      {/* ===== GUIDANCE SIGNS ===== */}
+      <group position={[50, 15, 20]}>
+        <mesh>
+          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 2.5, 0]}>
+          <boxGeometry args={[4, 2, 0.2]} />
+          <meshStandardMaterial color="#DEB887" />
+        </mesh>
+      </group>
       
-      {/* Doors and locks */}
-      <GLBModel path="/assets/Models/GLB format/door-rotate.glb" position={[300, 15, 50]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/lock.glb" position={[300, 70, 45]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/door-large-open.glb" position={[300, 195, 50]} scale={[2, 2, 2]} />
+      <group position={[480, 40, 20]}>
+        <mesh>
+          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 2.5, 0]}>
+          <boxGeometry args={[4, 2, 0.2]} />
+          <meshStandardMaterial color="#DEB887" />
+        </mesh>
+      </group>
+      
+      <group position={[430, 105, 20]}>
+        <mesh>
+          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0, 2.5, 0]}>
+          <boxGeometry args={[4, 2, 0.2]} />
+          <meshStandardMaterial color="#DEB887" />
+        </mesh>
+      </group>
+      
+      {/* ===== INTERACTIVE ELEMENTS ===== */}
+      
+      {/* Buttons and levers */}
+      <group position={[200, 15, 40]}>
+        <mesh>
+          <cylinderGeometry args={[1, 1, 0.5, 8]} />
+          <meshStandardMaterial color="#FF0000" />
+        </mesh>
+      </group>
+      
+      <group position={[200, 70, 30]}>
+        <mesh>
+          <cylinderGeometry args={[1.5, 1.5, 0.3, 8]} />
+          <meshStandardMaterial color="#00FF00" />
+        </mesh>
+      </group>
+      
+      <group position={[200, 185, 40]}>
+        <mesh>
+          <boxGeometry args={[2, 0.5, 2]} />
+          <meshStandardMaterial color="#0000FF" />
+        </mesh>
+      </group>
       
       {/* Ladders for vertical navigation */}
-      <GLBModel path="/assets/Models/GLB format/ladder.glb" position={[150, 15, -40]} scale={[1.2, 2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/ladder-broken.glb" position={[250, 70, -45]} scale={[1.3, 1.8, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[200, 185, -40]} scale={[1.2, 2.5, 1.2]} />
+      <group position={[150, 15, -40]}>
+        <mesh>
+          <boxGeometry args={[0.3, 8, 0.3]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        <mesh position={[0.5, 0, 0]}>
+          <boxGeometry args={[0.3, 8, 0.3]} />
+          <meshStandardMaterial color="#8B4513" />
+        </mesh>
+        {Array.from({length: 8}, (_, i) => (
+          <mesh key={i} position={[0.25, -3 + i, 0]}>
+            <boxGeometry args={[0.8, 0.2, 0.2]} />
+            <meshStandardMaterial color="#8B4513" />
+          </mesh>
+        ))}
+      </group>
+      
+      {/* Atmospheric elements */}
+      <Obstacle position={[125, 15, -25]} size={[2, 4, 2]} color="#8B4513" type="cylinder" />
+      <Obstacle position={[275, 75, -22]} size={[3, 2, 8]} color="#228B22" type="box" />
+      <Obstacle position={[200, 185, -25]} size={[8, 3, 1]} color="#8B4513" type="box" />
     </group>
   )
 }

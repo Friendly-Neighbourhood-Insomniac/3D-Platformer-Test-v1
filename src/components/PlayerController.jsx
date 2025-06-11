@@ -6,7 +6,7 @@ import CameraController from './CameraController'
 import * as THREE from 'three'
 
 function PlayerController({
-  position = [50, 50, 0],
+  position = [0, 5, 0],
   capsuleHeight = 1.8,
   capsuleRadius = 0.4,
   speed = 8,
@@ -15,7 +15,7 @@ function PlayerController({
   gravityScale = 1,
   airControl = 0.3,
   groundRayLength = 0.7,
-  cameraOffset = [0, 10, 20],
+  cameraOffset = [0, 8, 15],
   cameraDamping = 0.05,
   debugMode = false
 }) {

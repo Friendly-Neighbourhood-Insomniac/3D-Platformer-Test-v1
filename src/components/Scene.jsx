@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { RigidBody } from '@react-three/rapier'
 import * as THREE from 'three'
 
-// Basic Geometry Platform Component
+// Simple Platform Component
 function Platform({ position = [0, 0, 0], size = [10, 2, 10], color = "#32CD32", type = "fixed" }) {
   return (
     <RigidBody type={type} position={position}>
@@ -44,27 +44,27 @@ function MovingPlatform({ startPos, endPos, size = [8, 2, 8], color = "#4169E1",
   )
 }
 
-// Collectible Component with animation
+// Collectible Component
 function Collectible({ position, color = "#FFD700", type = "coin" }) {
   const ref = useRef()
   
   useFrame((state) => {
     if (ref.current) {
       ref.current.rotation.y = state.clock.elapsedTime * 2
-      ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 3) * 0.3
+      ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 3) * 0.5
     }
   })
 
   const getGeometry = () => {
     switch (type) {
       case "coin":
-        return <cylinderGeometry args={[0.8, 0.8, 0.2, 8]} />
+        return <cylinderGeometry args={[1, 1, 0.3, 8]} />
       case "gem":
-        return <octahedronGeometry args={[0.8]} />
-      case "heart":
-        return <sphereGeometry args={[0.6]} />
+        return <octahedronGeometry args={[1]} />
+      case "star":
+        return <sphereGeometry args={[0.8]} />
       default:
-        return <cylinderGeometry args={[0.8, 0.8, 0.2, 8]} />
+        return <cylinderGeometry args={[1, 1, 0.3, 8]} />
     }
   }
   
@@ -72,87 +72,16 @@ function Collectible({ position, color = "#FFD700", type = "coin" }) {
     <group ref={ref} position={position}>
       <mesh castShadow>
         {getGeometry()}
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
       </mesh>
     </group>
   )
 }
 
-// Obstacle Component
-function Obstacle({ position, size = [2, 2, 2], color = "#8B4513", type = "box" }) {
-  const getGeometry = () => {
-    switch (type) {
-      case "cylinder":
-        return <cylinderGeometry args={[size[0], size[0], size[1], 8]} />
-      case "cone":
-        return <coneGeometry args={[size[0], size[1], 8]} />
-      case "sphere":
-        return <sphereGeometry args={[size[0]]} />
-      default:
-        return <boxGeometry args={size} />
-    }
-  }
-
+// Simple Obstacle Component
+function Obstacle({ position, size = [3, 3, 3], color = "#8B4513" }) {
   return (
     <RigidBody type="fixed" position={position}>
-      <mesh castShadow receiveShadow>
-        {getGeometry()}
-        <meshStandardMaterial color={color} />
-      </mesh>
-    </RigidBody>
-  )
-}
-
-// Decoration Component (non-collidable)
-function Decoration({ position, size = [2, 4, 2], color = "#228B22", type = "tree" }) {
-  const getGeometry = () => {
-    switch (type) {
-      case "tree":
-        return (
-          <group>
-            <mesh position={[0, 0, 0]}>
-              <cylinderGeometry args={[0.3, 0.3, 2, 8]} />
-              <meshStandardMaterial color="#8B4513" />
-            </mesh>
-            <mesh position={[0, 2, 0]}>
-              <coneGeometry args={[1.5, 3, 8]} />
-              <meshStandardMaterial color={color} />
-            </mesh>
-          </group>
-        )
-      case "rock":
-        return <sphereGeometry args={size} />
-      case "flower":
-        return (
-          <group>
-            <mesh position={[0, 0, 0]}>
-              <cylinderGeometry args={[0.1, 0.1, 1, 6]} />
-              <meshStandardMaterial color="#228B22" />
-            </mesh>
-            <mesh position={[0, 1, 0]}>
-              <sphereGeometry args={[0.3]} />
-              <meshStandardMaterial color={color} />
-            </mesh>
-          </group>
-        )
-      default:
-        return <boxGeometry args={size} />
-    }
-  }
-
-  return (
-    <group position={position}>
-      <mesh castShadow receiveShadow>
-        {getGeometry()}
-      </mesh>
-    </group>
-  )
-}
-
-// Ramp Component
-function Ramp({ position, size = [10, 2, 10], rotation = [0, 0, 0], color = "#32CD32" }) {
-  return (
-    <RigidBody type="fixed" position={position} rotation={rotation}>
       <mesh castShadow receiveShadow>
         <boxGeometry args={size} />
         <meshStandardMaterial color={color} />
@@ -161,32 +90,39 @@ function Ramp({ position, size = [10, 2, 10], rotation = [0, 0, 0], color = "#32
   )
 }
 
-// Hazard Component
-function Hazard({ position, size = [2, 1, 2], color = "#FF4500", type = "spikes" }) {
-  const getGeometry = () => {
-    switch (type) {
-      case "spikes":
-        return <coneGeometry args={[size[0], size[1], 4]} />
-      case "saw":
-        return <cylinderGeometry args={[size[0], size[0], 0.2, 16]} />
-      default:
-        return <coneGeometry args={[size[0], size[1], 4]} />
-    }
-  }
+// Checkpoint Flag Component
+function CheckpointFlag({ position, color = "#00FF00" }) {
+  return (
+    <group position={position}>
+      {/* Flag pole */}
+      <mesh>
+        <cylinderGeometry args={[0.2, 0.2, 8, 8]} />
+        <meshStandardMaterial color="#8B4513" />
+      </mesh>
+      {/* Flag */}
+      <mesh position={[0, 4, 1.5]}>
+        <boxGeometry args={[3, 2, 0.1]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    </group>
+  )
+}
 
+// Jump Pad Component
+function JumpPad({ position, color = "#FF69B4" }) {
   const ref = useRef()
   
   useFrame((state) => {
-    if (ref.current && type === "saw") {
-      ref.current.rotation.z = state.clock.elapsedTime * 5
+    if (ref.current) {
+      ref.current.scale.y = 1 + Math.sin(state.clock.elapsedTime * 4) * 0.2
     }
   })
 
   return (
     <RigidBody type="fixed" position={position}>
       <mesh ref={ref} castShadow receiveShadow>
-        {getGeometry()}
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+        <cylinderGeometry args={[2, 2, 0.5, 8]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
       </mesh>
     </RigidBody>
   )
@@ -195,358 +131,338 @@ function Hazard({ position, size = [2, 1, 2], color = "#FF4500", type = "spikes"
 function Scene() {
   return (
     <group>
-      {/* ===== GROUND ZONE (Y: 0-50) - Forest/Grassland ===== */}
+      {/* ===== ZONE 1: STARTING AREA (Green Forest) ===== */}
       
-      {/* Base Terrain - Large grass platforms */}
-      <Platform position={[0, 0, 0]} size={[40, 4, 40]} color="#32CD32" />
-      <Platform position={[100, 0, 0]} size={[30, 4, 30]} color="#228B22" />
-      <Platform position={[200, 0, 0]} size={[35, 4, 35]} color="#32CD32" />
-      <Platform position={[300, 0, 0]} size={[25, 4, 25]} color="#228B22" />
-      <Platform position={[400, 0, 0]} size={[30, 4, 30]} color="#32CD32" />
+      {/* Starting platform */}
+      <Platform position={[0, 0, 0]} size={[20, 3, 20]} color="#228B22" />
       
-      {/* Side platforms for exploration */}
-      <Platform position={[50, 10, 100]} size={[15, 2, 15]} color="#90EE90" />
-      <Platform position={[150, 15, -100]} size={[15, 2, 15]} color="#90EE90" />
-      <Platform position={[250, 20, 100]} size={[15, 2, 15]} color="#90EE90" />
-      <Platform position={[350, 15, -100]} size={[15, 2, 15]} color="#90EE90" />
+      {/* Tutorial platforms - simple jumps */}
+      <Platform position={[25, 2, 0]} size={[8, 2, 8]} color="#32CD32" />
+      <Platform position={[40, 4, 0]} size={[8, 2, 8]} color="#32CD32" />
+      <Platform position={[55, 6, 0]} size={[8, 2, 8]} color="#32CD32" />
       
-      {/* Stepping stones */}
-      <Platform position={[75, 8, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[125, 12, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[175, 16, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[225, 20, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[275, 24, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[325, 28, 0]} size={[8, 2, 8]} color="#228B22" />
-      <Platform position={[375, 32, 0]} size={[8, 2, 8]} color="#228B22" />
+      {/* First collectibles */}
+      <Collectible position={[25, 6, 0]} color="#FFD700" type="coin" />
+      <Collectible position={[40, 8, 0]} color="#FFD700" type="coin" />
+      <Collectible position={[55, 10, 0]} color="#FFD700" type="coin" />
       
-      {/* Forest decorations */}
-      <Decoration position={[25, 6, 50]} type="tree" color="#228B22" />
-      <Decoration position={[125, 6, -75]} type="tree" color="#228B22" />
-      <Decoration position={[225, 6, 75]} type="tree" color="#006400" />
-      <Decoration position={[325, 6, -50]} type="tree" color="#228B22" />
-      <Decoration position={[425, 6, 60]} type="tree" color="#006400" />
+      {/* Simple obstacles */}
+      <Obstacle position={[15, 5, 0]} size={[2, 4, 2]} color="#8B4513" />
+      <Obstacle position={[32, 8, 0]} size={[2, 3, 2]} color="#8B4513" />
       
-      {/* Flowers and vegetation */}
-      <Decoration position={[75, 6, -25]} type="flower" color="#FF69B4" />
-      <Decoration position={[175, 6, 25]} type="flower" color="#FFB6C1" />
-      <Decoration position={[275, 6, -40]} type="flower" color="#FF1493" />
-      <Decoration position={[375, 6, 35]} type="flower" color="#FF69B4" />
+      {/* Zone 1 checkpoint */}
+      <CheckpointFlag position={[70, 8, 0]} color="#00FF00" />
       
-      {/* Interactive obstacles */}
-      <Obstacle position={[100, 8, 100]} size={[3, 3, 3]} color="#8B4513" type="box" />
-      <Obstacle position={[200, 8, -80]} size={[2, 4, 2]} color="#654321" type="cylinder" />
-      <Obstacle position={[300, 8, 90]} size={[4, 2, 4]} color="#8B4513" type="box" />
-      <Obstacle position={[400, 8, -70]} size={[3, 3, 3]} color="#654321" type="box" />
+      {/* ===== ZONE 2: DESERT AREA (Yellow/Orange) ===== */}
       
-      {/* Ground zone collectibles */}
-      <Collectible position={[50, 15, 0]} color="#CD7F32" type="coin" />
-      <Collectible position={[150, 20, 0]} color="#C0C0C0" type="coin" />
-      <Collectible position={[250, 25, 0]} color="#FFD700" type="coin" />
-      <Collectible position={[350, 20, 0]} color="#FF0000" type="heart" />
+      {/* Desert base platform */}
+      <Platform position={[100, 8, 0]} size={[15, 3, 15]} color="#DAA520" />
       
-      {/* Transition ramp to mid zone */}
-      <Ramp position={[450, 15, 0]} size={[20, 4, 20]} rotation={[0, 0, 0.2]} color="#228B22" />
-      <Platform position={[480, 35, 0]} size={[15, 2, 15]} color="#228B22" />
-      
-      {/* ===== MID ZONE (Y: 50-150) - Snow/Mountain Region ===== */}
-      
-      {/* Snow base platforms */}
-      <Platform position={[0, 50, 0]} size={[30, 6, 30]} color="#F0F8FF" />
-      <Platform position={[100, 55, 0]} size={[25, 4, 25]} color="#E6E6FA" />
-      <Platform position={[200, 60, 0]} size={[30, 6, 30]} color="#F0F8FF" />
-      <Platform position={[300, 65, 0]} size={[25, 4, 25]} color="#E6E6FA" />
-      <Platform position={[400, 70, 0]} size={[30, 6, 30]} color="#F0F8FF" />
-      
-      {/* Snow stepped platforms */}
-      <Platform position={[50, 58, 75]} size={[12, 2, 12]} color="#F5F5F5" />
-      <Platform position={[50, 58, -75]} size={[12, 2, 12]} color="#F5F5F5" />
-      <Platform position={[150, 63, 60]} size={[12, 2, 12]} color="#F5F5F5" />
-      <Platform position={[150, 63, -60]} size={[12, 2, 12]} color="#F5F5F5" />
-      <Platform position={[250, 68, 80]} size={[12, 2, 12]} color="#F5F5F5" />
-      <Platform position={[250, 68, -80]} size={[12, 2, 12]} color="#F5F5F5" />
-      
-      {/* Snow decorations (ice crystals and rocks) */}
-      <Decoration position={[75, 65, 40]} type="rock" size={[2, 2, 2]} color="#B0C4DE" />
-      <Decoration position={[175, 70, -45]} type="rock" size={[1.8, 1.8, 1.8]} color="#778899" />
-      <Decoration position={[275, 75, 50]} type="rock" size={[1.5, 1.5, 1.5]} color="#B0C4DE" />
-      <Decoration position={[375, 80, -40]} type="rock" size={[2.2, 2.2, 2.2]} color="#778899" />
-      
-      {/* Snow obstacles and hazards */}
-      <Obstacle position={[125, 65, -25]} size={[4, 4, 4]} color="#696969" type="sphere" />
-      <Obstacle position={[225, 70, 20]} size={[3, 3, 3]} color="#708090" type="sphere" />
-      <Hazard position={[200, 67, 0]} size={[1.5, 3, 1.5]} color="#FF4500" type="spikes" />
-      <Hazard position={[325, 75, -15]} size={[2, 2, 2]} color="#FF6347" type="spikes" />
-      
-      {/* Mid zone collectibles */}
-      <Collectible position={[50, 70, 0]} color="#C0C0C0" type="coin" />
-      <Collectible position={[150, 75, 0]} color="#FFD700" type="coin" />
-      <Collectible position={[250, 80, 0]} color="#9932CC" type="gem" />
-      <Collectible position={[350, 85, 0]} color="#FFD700" type="gem" />
-      
-      {/* Moving platforms in mid zone */}
+      {/* Moving platforms introduction */}
       <MovingPlatform 
-        startPos={[125, 75, 0]} 
-        endPos={[175, 75, 0]} 
-        size={[12, 2, 12]} 
-        color="#4169E1" 
-        speed={1.2} 
+        startPos={[120, 12, 0]} 
+        endPos={[140, 12, 0]} 
+        size={[6, 2, 6]} 
+        color="#FF8C00" 
+        speed={0.8} 
       />
+      
       <MovingPlatform 
-        startPos={[275, 83, -40]} 
-        endPos={[325, 83, -40]} 
-        size={[12, 2, 12]} 
-        color="#1E90FF" 
+        startPos={[160, 16, 0]} 
+        endPos={[160, 16, 20]} 
+        size={[6, 2, 6]} 
+        color="#FF8C00" 
         speed={1.0} 
       />
       
-      {/* Transition to summit */}
-      <Platform position={[430, 85, 0]} size={[15, 2, 15]} color="#E6E6FA" />
-      <Ramp position={[450, 95, 0]} size={[15, 4, 15]} rotation={[0, 0, 0.3]} color="#F0F8FF" />
+      {/* Desert platforms */}
+      <Platform position={[180, 20, 0]} size={[10, 2, 10]} color="#DAA520" />
+      <Platform position={[200, 24, 0]} size={[8, 2, 8]} color="#DAA520" />
       
-      {/* ===== SUMMIT ZONE (Y: 150-300) - Sky/Cloud Platforms ===== */}
+      {/* Desert collectibles */}
+      <Collectible position={[100, 14, 0]} color="#C0C0C0" type="coin" />
+      <Collectible position={[180, 26, 0]} color="#9932CC" type="gem" />
+      <Collectible position={[200, 30, 0]} color="#9932CC" type="gem" />
       
-      {/* Summit base platforms */}
-      <Platform position={[0, 150, 0]} size={[25, 4, 25]} color="#87CEEB" />
-      <Platform position={[100, 160, 0]} size={[20, 4, 20]} color="#B0E0E6" />
-      <Platform position={[200, 170, 0]} size={[25, 4, 25]} color="#87CEEB" />
-      <Platform position={[300, 180, 0]} size={[30, 6, 30]} color="#B0E0E6" />
+      {/* Jump pad */}
+      <JumpPad position={[220, 26, 0]} color="#FF69B4" />
       
-      {/* Floating platforms */}
-      <Platform position={[50, 165, 60]} size={[12, 2, 12]} color="#ADD8E6" />
-      <Platform position={[50, 165, -60]} size={[12, 2, 12]} color="#ADD8E6" />
-      <Platform position={[150, 175, 50]} size={[12, 2, 12]} color="#87CEFA" />
-      <Platform position={[150, 175, -50]} size={[12, 2, 12]} color="#87CEFA" />
-      <Platform position={[250, 185, 70]} size={[12, 2, 12]} color="#ADD8E6" />
-      <Platform position={[250, 185, -70]} size={[12, 2, 12]} color="#ADD8E6" />
+      {/* Zone 2 checkpoint */}
+      <CheckpointFlag position={[240, 30, 0]} color="#FFFF00" />
       
-      {/* Summit moving platforms - more challenging */}
+      {/* ===== ZONE 3: ICE AREA (Blue/White) ===== */}
+      
+      {/* Ice platforms */}
+      <Platform position={[270, 35, 0]} size={[12, 3, 12]} color="#87CEEB" />
+      <Platform position={[290, 40, 0]} size={[8, 2, 8]} color="#B0E0E6" />
+      <Platform position={[310, 45, 0]} size={[8, 2, 8]} color="#87CEEB" />
+      
+      {/* Challenging moving platforms */}
       <MovingPlatform 
-        startPos={[75, 170, 0]} 
-        endPos={[125, 170, 0]} 
-        size={[15, 2, 15]} 
+        startPos={[330, 50, -10]} 
+        endPos={[330, 50, 10]} 
+        size={[6, 2, 6]} 
         color="#4169E1" 
         speed={1.5} 
       />
+      
       <MovingPlatform 
-        startPos={[175, 180, -25]} 
-        endPos={[225, 180, 25]} 
-        size={[12, 2, 12]} 
-        color="#0000FF" 
-        speed={1.8} 
+        startPos={[350, 55, 0]} 
+        endPos={[370, 55, 0]} 
+        size={[6, 2, 6]} 
+        color="#4169E1" 
+        speed={1.2} 
       />
+      
+      {/* Ice collectibles */}
+      <Collectible position={[270, 41, 0]} color="#00FFFF" type="star" />
+      <Collectible position={[310, 51, 0]} color="#9932CC" type="gem" />
+      
+      {/* Zone 3 checkpoint */}
+      <CheckpointFlag position={[390, 60, 0]} color="#00BFFF" />
+      
+      {/* ===== ZONE 4: VOLCANO AREA (Red/Orange) ===== */}
+      
+      {/* Volcano platforms */}
+      <Platform position={[420, 65, 0]} size={[10, 3, 10]} color="#DC143C" />
+      <Platform position={[440, 70, 0]} size={[8, 2, 8]} color="#FF4500" />
+      
+      {/* Fast moving platforms */}
       <MovingPlatform 
-        startPos={[275, 190, 0]} 
-        endPos={[325, 190, 0]} 
-        size={[12, 2, 12]} 
-        color="#1E90FF" 
+        startPos={[460, 75, -15]} 
+        endPos={[460, 75, 15]} 
+        size={[6, 2, 6]} 
+        color="#FF0000" 
         speed={2.0} 
       />
       
-      {/* Summit hazards */}
-      <Hazard position={[100, 167, 0]} size={[2, 4, 2]} color="#FF4500" type="spikes" />
-      <Hazard position={[200, 177, 0]} size={[3, 3, 3]} color="#FF6347" type="spikes" />
-      <Hazard position={[250, 182, 0]} size={[2, 2, 2]} color="#FF0000" type="saw" />
+      <MovingPlatform 
+        startPos={[480, 80, 0]} 
+        endPos={[500, 80, 0]} 
+        size={[6, 2, 6]} 
+        color="#FF0000" 
+        speed={1.8} 
+      />
       
-      {/* Summit collectibles - high value */}
-      <Collectible position={[50, 175, 0]} color="#FFD700" type="coin" />
-      <Collectible position={[150, 185, 0]} color="#9932CC" type="gem" />
-      <Collectible position={[250, 195, 0]} color="#FFD700" type="coin" />
+      {/* Volcano collectibles */}
+      <Collectible position={[420, 71, 0]} color="#FF6347" type="star" />
+      <Collectible position={[440, 76, 0]} color="#FFD700" type="gem" />
       
-      {/* Final goal area */}
-      <Platform position={[400, 200, 0]} size={[40, 8, 40]} color="#FFD700" />
+      {/* Zone 4 checkpoint */}
+      <CheckpointFlag position={[520, 85, 0]} color="#FF0000" />
+      
+      {/* ===== ZONE 5: FINAL AREA (Purple/Gold) ===== */}
+      
+      {/* Final challenge platforms */}
+      <Platform position={[550, 90, 0]} size={[8, 2, 8]} color="#9370DB" />
+      
+      {/* Multiple moving platforms */}
+      <MovingPlatform 
+        startPos={[570, 95, -10]} 
+        endPos={[590, 95, 10]} 
+        size={[5, 2, 5]} 
+        color="#8A2BE2" 
+        speed={2.2} 
+      />
+      
+      <MovingPlatform 
+        startPos={[610, 100, 10]} 
+        endPos={[610, 100, -10]} 
+        size={[5, 2, 5]} 
+        color="#8A2BE2" 
+        speed={2.5} 
+      />
+      
+      <MovingPlatform 
+        startPos={[630, 105, 0]} 
+        endPos={[650, 105, 0]} 
+        size={[5, 2, 5]} 
+        color="#8A2BE2" 
+        speed={2.0} 
+      />
+      
+      {/* Final platform */}
+      <Platform position={[680, 110, 0]} size={[20, 4, 20]} color="#FFD700" />
+      
+      {/* Final collectibles */}
+      <Collectible position={[550, 96, 0]} color="#9932CC" type="star" />
+      <Collectible position={[680, 118, 0]} color="#FFD700" type="star" />
+      <Collectible position={[675, 118, 5]} color="#9932CC" type="gem" />
+      <Collectible position={[685, 118, -5]} color="#9932CC" type="gem" />
       
       {/* Victory flag */}
-      <group position={[400, 210, 0]}>
+      <group position={[680, 118, 0]}>
         <mesh>
-          <cylinderGeometry args={[0.2, 0.2, 15, 8]} />
+          <cylinderGeometry args={[0.3, 0.3, 15, 8]} />
           <meshStandardMaterial color="#8B4513" />
         </mesh>
         <mesh position={[0, 7, 2]}>
-          <boxGeometry args={[4, 3, 0.1]} />
-          <meshStandardMaterial color="#FF0000" />
+          <boxGeometry args={[5, 4, 0.1]} />
+          <meshStandardMaterial color="#FFD700" />
         </mesh>
       </group>
       
-      {/* Victory chests */}
-      <Obstacle position={[390, 208, 10]} size={[3, 2, 3]} color="#8B4513" type="box" />
-      <Obstacle position={[410, 208, -10]} size={[3, 2, 3]} color="#8B4513" type="box" />
+      {/* ===== SIDE AREAS & SECRETS ===== */}
       
-      {/* Victory collectibles */}
-      <Collectible position={[395, 210, 5]} color="#9932CC" type="gem" />
-      <Collectible position={[405, 210, -5]} color="#9932CC" type="gem" />
-      <Collectible position={[400, 210, 0]} color="#FF0000" type="heart" />
+      {/* Secret area 1 - accessible from zone 2 */}
+      <Platform position={[150, 30, 50]} size={[8, 2, 8]} color="#32CD32" />
+      <Platform position={[170, 35, 50]} size={[6, 2, 6]} color="#32CD32" />
+      <Collectible position={[150, 36, 50]} color="#9932CC" type="gem" />
+      <Collectible position={[170, 41, 50]} color="#FFD700" type="star" />
       
-      {/* ===== SECRET AREAS ===== */}
+      {/* Secret area 2 - accessible from zone 3 */}
+      <Platform position={[320, 60, -50]} size={[10, 2, 10]} color="#87CEEB" />
+      <Collectible position={[320, 66, -50]} color="#00FFFF" type="star" />
+      <Collectible position={[315, 66, -45]} color="#9932CC" type="gem" />
+      <Collectible position={[325, 66, -55]} color="#9932CC" type="gem" />
       
-      {/* Secret area 1 - Hidden forest grove */}
-      <Platform position={[100, 25, 150]} size={[15, 2, 15]} color="#32CD32" />
-      <Platform position={[150, 30, 150]} size={[12, 2, 12]} color="#228B22" />
-      <Decoration position={[100, 35, 160]} type="tree" color="#228B22" />
-      <Decoration position={[150, 40, 140]} type="tree" color="#006400" />
-      <Collectible position={[125, 40, 150]} color="#9932CC" type="gem" />
-      
-      {/* Secret area 2 - Snow cave */}
-      <Platform position={[300, 90, -150]} size={[20, 4, 20]} color="#F0F8FF" />
-      <Obstacle position={[300, 96, -150]} size={[3, 2, 3]} color="#8B4513" type="box" />
-      <Collectible position={[310, 96, -160]} color="#FFD700" type="gem" />
-      
-      {/* Secret area 3 - Sky island */}
-      <Platform position={[200, 220, 150]} size={[20, 4, 20]} color="#87CEEB" />
-      <Decoration position={[200, 230, 160]} type="tree" color="#006400" />
-      <Collectible position={[200, 230, 140]} color="#9932CC" type="gem" />
-      <Collectible position={[210, 230, 150]} color="#FFD700" type="coin" />
-      
-      {/* ===== GROUND PLANE AND BOUNDARIES ===== */}
+      {/* ===== GROUND AND BOUNDARIES ===== */}
       
       {/* Ground plane */}
-      <RigidBody type="fixed" position={[250, -25, 0]}>
+      <RigidBody type="fixed" position={[350, -20, 0]}>
         <mesh receiveShadow>
-          <boxGeometry args={[1000, 10, 1000]} />
+          <boxGeometry args={[800, 5, 400]} />
           <meshStandardMaterial color="#4a7c59" />
         </mesh>
       </RigidBody>
       
-      {/* Boundary walls using rocks */}
-      {Array.from({length: 20}, (_, i) => {
-        const x = i * 30 - 250
-        return (
-          <Obstacle 
-            key={`north-boundary-${i}`}
-            position={[x, 15, 250]} 
-            size={[4, 6, 4]} 
-            color="#696969"
-            type="sphere"
-          />
-        )
-      })}
-      
-      {Array.from({length: 20}, (_, i) => {
-        const x = i * 30 - 250
-        return (
-          <Obstacle 
-            key={`south-boundary-${i}`}
-            position={[x, 15, -250]} 
-            size={[4, 6, 4]} 
-            color="#696969"
-            type="sphere"
-          />
-        )
-      })}
-      
-      {/* ===== CHECKPOINT FLAGS ===== */}
-      <group position={[450, 40, 10]}>
+      {/* Simple boundary walls */}
+      <RigidBody type="fixed" position={[350, 20, 100]}>
         <mesh>
-          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
+          <boxGeometry args={[800, 40, 5]} />
+          <meshStandardMaterial color="#696969" />
+        </mesh>
+      </RigidBody>
+      
+      <RigidBody type="fixed" position={[350, 20, -100]}>
+        <mesh>
+          <boxGeometry args={[800, 40, 5]} />
+          <meshStandardMaterial color="#696969" />
+        </mesh>
+      </RigidBody>
+      
+      {/* ===== DECORATIVE ELEMENTS ===== */}
+      
+      {/* Simple trees in zone 1 */}
+      <group position={[10, 5, 30]}>
+        <mesh>
+          <cylinderGeometry args={[0.5, 0.5, 4, 8]} />
           <meshStandardMaterial color="#8B4513" />
         </mesh>
-        <mesh position={[0, 4, 1.5]}>
-          <boxGeometry args={[3, 2, 0.1]} />
-          <meshStandardMaterial color="#00FF00" />
+        <mesh position={[0, 3, 0]}>
+          <coneGeometry args={[2, 4, 8]} />
+          <meshStandardMaterial color="#228B22" />
         </mesh>
       </group>
       
-      <group position={[400, 90, 10]}>
+      <group position={[50, 8, -30]}>
         <mesh>
-          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
+          <cylinderGeometry args={[0.5, 0.5, 4, 8]} />
           <meshStandardMaterial color="#8B4513" />
         </mesh>
-        <mesh position={[0, 4, 1.5]}>
-          <boxGeometry args={[3, 2, 0.1]} />
+        <mesh position={[0, 3, 0]}>
+          <coneGeometry args={[2, 4, 8]} />
+          <meshStandardMaterial color="#228B22" />
+        </mesh>
+      </group>
+      
+      {/* Cacti in zone 2 */}
+      <group position={[120, 15, 30]}>
+        <mesh>
+          <cylinderGeometry args={[0.8, 0.8, 6, 8]} />
+          <meshStandardMaterial color="#228B22" />
+        </mesh>
+      </group>
+      
+      <group position={[180, 27, -25]}>
+        <mesh>
+          <cylinderGeometry args={[0.6, 0.6, 5, 8]} />
+          <meshStandardMaterial color="#228B22" />
+        </mesh>
+      </group>
+      
+      {/* Ice crystals in zone 3 */}
+      <group position={[280, 42, 25]}>
+        <mesh>
+          <coneGeometry args={[1, 3, 6]} />
+          <meshStandardMaterial color="#87CEEB" />
+        </mesh>
+      </group>
+      
+      <group position={[320, 52, -30]}>
+        <mesh>
+          <coneGeometry args={[0.8, 2.5, 6]} />
+          <meshStandardMaterial color="#B0E0E6" />
+        </mesh>
+      </group>
+      
+      {/* Lava rocks in zone 4 */}
+      <group position={[430, 72, 20]}>
+        <mesh>
+          <sphereGeometry args={[1.5]} />
+          <meshStandardMaterial color="#8B0000" />
+        </mesh>
+      </group>
+      
+      <group position={[470, 82, -25]}>
+        <mesh>
+          <sphereGeometry args={[1.2]} />
+          <meshStandardMaterial color="#DC143C" />
+        </mesh>
+      </group>
+      
+      {/* Crystal formations in final zone */}
+      <group position={[560, 97, 15]}>
+        <mesh>
+          <octahedronGeometry args={[1.5]} />
+          <meshStandardMaterial color="#9370DB" />
+        </mesh>
+      </group>
+      
+      <group position={[640, 112, -20]}>
+        <mesh>
+          <octahedronGeometry args={[1.2]} />
+          <meshStandardMaterial color="#8A2BE2" />
+        </mesh>
+      </group>
+      
+      {/* ===== GUIDANCE ELEMENTS ===== */}
+      
+      {/* Simple directional arrows */}
+      <group position={[15, 8, 0]}>
+        <mesh rotation={[0, 0, -Math.PI/2]}>
+          <coneGeometry args={[1, 3, 3]} />
           <meshStandardMaterial color="#FFFF00" />
         </mesh>
       </group>
       
-      <group position={[300, 195, 10]}>
-        <mesh>
-          <cylinderGeometry args={[0.15, 0.15, 8, 8]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        <mesh position={[0, 4, 1.5]}>
-          <boxGeometry args={[3, 2, 0.1]} />
-          <meshStandardMaterial color="#FF0000" />
+      <group position={[85, 12, 0]}>
+        <mesh rotation={[0, 0, -Math.PI/2]}>
+          <coneGeometry args={[1, 3, 3]} />
+          <meshStandardMaterial color="#FFFF00" />
         </mesh>
       </group>
       
-      {/* ===== GUIDANCE SIGNS ===== */}
-      <group position={[50, 15, 20]}>
-        <mesh>
-          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        <mesh position={[0, 2.5, 0]}>
-          <boxGeometry args={[4, 2, 0.2]} />
-          <meshStandardMaterial color="#DEB887" />
+      <group position={[255, 35, 0]}>
+        <mesh rotation={[0, 0, -Math.PI/2]}>
+          <coneGeometry args={[1, 3, 3]} />
+          <meshStandardMaterial color="#FFFF00" />
         </mesh>
       </group>
       
-      <group position={[480, 40, 20]}>
-        <mesh>
-          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        <mesh position={[0, 2.5, 0]}>
-          <boxGeometry args={[4, 2, 0.2]} />
-          <meshStandardMaterial color="#DEB887" />
+      <group position={[405, 70, 0]}>
+        <mesh rotation={[0, 0, -Math.PI/2]}>
+          <coneGeometry args={[1, 3, 3]} />
+          <meshStandardMaterial color="#FFFF00" />
         </mesh>
       </group>
       
-      <group position={[430, 105, 20]}>
-        <mesh>
-          <cylinderGeometry args={[0.2, 0.2, 4, 8]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        <mesh position={[0, 2.5, 0]}>
-          <boxGeometry args={[4, 2, 0.2]} />
-          <meshStandardMaterial color="#DEB887" />
+      <group position={[535, 95, 0]}>
+        <mesh rotation={[0, 0, -Math.PI/2]}>
+          <coneGeometry args={[1, 3, 3]} />
+          <meshStandardMaterial color="#FFFF00" />
         </mesh>
       </group>
-      
-      {/* ===== INTERACTIVE ELEMENTS ===== */}
-      
-      {/* Buttons and levers */}
-      <group position={[200, 15, 40]}>
-        <mesh>
-          <cylinderGeometry args={[1, 1, 0.5, 8]} />
-          <meshStandardMaterial color="#FF0000" />
-        </mesh>
-      </group>
-      
-      <group position={[200, 70, 30]}>
-        <mesh>
-          <cylinderGeometry args={[1.5, 1.5, 0.3, 8]} />
-          <meshStandardMaterial color="#00FF00" />
-        </mesh>
-      </group>
-      
-      <group position={[200, 185, 40]}>
-        <mesh>
-          <boxGeometry args={[2, 0.5, 2]} />
-          <meshStandardMaterial color="#0000FF" />
-        </mesh>
-      </group>
-      
-      {/* Ladders for vertical navigation */}
-      <group position={[150, 15, -40]}>
-        <mesh>
-          <boxGeometry args={[0.3, 8, 0.3]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        <mesh position={[0.5, 0, 0]}>
-          <boxGeometry args={[0.3, 8, 0.3]} />
-          <meshStandardMaterial color="#8B4513" />
-        </mesh>
-        {Array.from({length: 8}, (_, i) => (
-          <mesh key={i} position={[0.25, -3 + i, 0]}>
-            <boxGeometry args={[0.8, 0.2, 0.2]} />
-            <meshStandardMaterial color="#8B4513" />
-          </mesh>
-        ))}
-      </group>
-      
-      {/* Atmospheric elements */}
-      <Obstacle position={[125, 15, -25]} size={[2, 4, 2]} color="#8B4513" type="cylinder" />
-      <Obstacle position={[275, 75, -22]} size={[3, 2, 8]} color="#228B22" type="box" />
-      <Obstacle position={[200, 185, -25]} size={[8, 3, 1]} color="#8B4513" type="box" />
     </group>
   )
 }

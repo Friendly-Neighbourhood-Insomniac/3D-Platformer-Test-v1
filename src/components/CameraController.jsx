@@ -4,13 +4,13 @@ import * as THREE from 'three'
 
 function CameraController({ 
   target,
-  offset = [0, 5, 10],
+  offset = [0, 15, 25],
   damping = 0.05,
   lookAtOffset = [0, 1, 0],
   enableRotation = true,
   rotationSpeed = 0.5,
-  minDistance = 3,
-  maxDistance = 20,
+  minDistance = 10,
+  maxDistance = 50,
   minPolarAngle = 0,
   maxPolarAngle = Math.PI / 2,
   autoRotate = false,

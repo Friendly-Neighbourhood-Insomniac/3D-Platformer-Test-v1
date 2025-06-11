@@ -332,8 +332,8 @@ function Scene() {
       {/* Ground plane */}
       <RigidBody type="fixed" position={[250, -25, 0]}>
         <mesh receiveShadow>
-          <boxGeometry args={[600, 5, 600]} />
-          <meshStandardMaterial color="#2d4a22" />
+          <boxGeometry args={[1000, 10, 1000]} />
+          <meshStandardMaterial color="#4a7c59" />
         </mesh>
       </RigidBody>
       

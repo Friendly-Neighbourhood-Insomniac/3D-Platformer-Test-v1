@@ -16,64 +16,52 @@ function GameContent() {
   return (
     <>
       <Suspense fallback={null}>
-        {/* Jungle Sky */}
+        {/* Sky with proper lighting */}
         <Sky 
           distance={450000}
-          sunPosition={[200, 40, 200]}
-          inclination={0.6}
+          sunPosition={[100, 100, 100]}
+          inclination={0.49}
           azimuth={0.25}
-          turbidity={10}
-          rayleigh={3}
+          turbidity={8}
+          rayleigh={2}
           mieCoefficient={0.005}
-          mieDirectionalG={0.7}
+          mieDirectionalG={0.8}
         />
         
-        {/* Jungle Lighting */}
-        <ambientLight intensity={0.6} color="#90EE90" />
+        {/* Bright ambient lighting */}
+        <ambientLight intensity={1.2} color="#ffffff" />
         <directionalLight 
-          position={[300, 200, 100]} 
-          intensity={1.8}
-          color="#FFF8DC"
+          position={[100, 100, 50]} 
+          intensity={2.5}
+          color="#ffffff"
           castShadow
-          shadow-mapSize={[4096, 4096]}
-          shadow-camera-far={800}
-          shadow-camera-left={-300}
-          shadow-camera-right={300}
-          shadow-camera-top={300}
-          shadow-camera-bottom={-300}
+          shadow-mapSize={[2048, 2048]}
+          shadow-camera-far={1000}
+          shadow-camera-left={-500}
+          shadow-camera-right={500}
+          shadow-camera-top={500}
+          shadow-camera-bottom={-500}
         />
         
-        {/* Additional atmospheric lighting for massive scale */}
+        {/* Additional bright lighting */}
         <pointLight 
-          position={[150, 60, 0]} 
-          intensity={0.8} 
-          color="#FFD700" 
-          distance={200}
+          position={[250, 100, 0]} 
+          intensity={1.5} 
+          color="#ffffff" 
+          distance={300}
         />
         <pointLight 
-          position={[300, 50, 0]} 
-          intensity={0.6} 
-          color="#FF6347" 
-          distance={180}
-        />
-        <pointLight 
-          position={[450, 70, 0]} 
-          intensity={0.8} 
-          color="#9370DB" 
-          distance={220}
-        />
-        <pointLight 
-          position={[600, 80, 0]} 
-          intensity={1.0} 
-          color="#00FFFF" 
-          distance={250}
+          position={[0, 100, 250]} 
+          intensity={1.5} 
+          color="#ffffff" 
+          distance={300}
         />
         
-        {/* Fog for massive depth */}
-        <fog attach="fog" args={['#87CEEB', 100, 500]} />
+        {/* Light fog for depth */}
+        <fog attach="fog" args={['#87CEEB', 200, 800]} />
         
-        {/* Environment for reflections */}
-        <Environment preset="forest" background={false} />
+        {/* Bright environment */}
+        <Environment preset="sunset" background={true} />
         
         <Physics gravity={[0, -30, 0]} debug={playerControls.debugMode}>
           <Scene />
@@ -115,7 +103,7 @@ function App() {
         <KeyboardControls map={keyMap}>
           <Canvas
             camera={{ 
-              position: [0, 30, 40], 
+             position: [50, 50, 100], 
               fov: 75,
               near: 0.1,
               far: 2000

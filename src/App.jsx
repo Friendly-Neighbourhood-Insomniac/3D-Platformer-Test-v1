@@ -6,6 +6,7 @@ import { Leva } from 'leva'
 import Scene from './components/Scene'
 import PlayerController from './components/PlayerController'
 import InputProvider from './components/InputManager'
+import { GameStateProvider } from './components/Scene'
 import { keyMap } from './components/CharacterController'
 import UI from './components/UI'
 import { usePlayerControls } from './hooks/useLeva'
@@ -99,25 +100,27 @@ function App() {
         titleBar={{ position: { x: 0, y: 40 } }}
       />
       
-      <InputProvider showMobileControls={true}>
-        <KeyboardControls map={keyMap}>
-          <Canvas
-            camera={{ 
-             position: [0, 15, 25], 
-              fov: 75,
-              near: 0.1,
-              far: 2000
-            }}
-            shadows
-            gl={{ antialias: true, alpha: false }}
-            dpr={[1, 2]}
-          >
-            <GameContent />
-          </Canvas>
-        </KeyboardControls>
-      </InputProvider>
-      
-      <UI />
+      <GameStateProvider>
+        <InputProvider showMobileControls={true}>
+          <KeyboardControls map={keyMap}>
+            <Canvas
+              camera={{ 
+               position: [0, 15, 25], 
+                fov: 75,
+                near: 0.1,
+                far: 2000
+              }}
+              shadows
+              gl={{ antialias: true, alpha: false }}
+              dpr={[1, 2]}
+            >
+              <GameContent />
+            </Canvas>
+          </KeyboardControls>
+        </InputProvider>
+        
+        <UI />
+      </GameStateProvider>
     </div>
   )
 }

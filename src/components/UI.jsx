@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { useGameState } from './Scene'
 
 function UI() {
-  const [score, setScore] = useState(0)
+  const { gameState } = useGameState()
   const [lives, setLives] = useState(3)
-  const [collectibles, setCollectibles] = useState(0)
   const [time, setTime] = useState(0)
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function UI() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span>💰</span>
-            <span style={{ fontWeight: 'bold', color: '#FFD700' }}>{score.toLocaleString()}</span>
+            <span style={{ fontWeight: 'bold', color: '#FFD700' }}>{gameState.score.toLocaleString()}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span>❤️</span>
@@ -74,11 +74,15 @@ function UI() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span>💎</span>
-            <span style={{ fontWeight: 'bold', color: '#9370DB' }}>{collectibles}</span>
+            <span style={{ fontWeight: 'bold', color: '#9370DB' }}>{gameState.collectibles}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span>⏱️</span>
             <span style={{ fontWeight: 'bold', color: '#4A90E2' }}>{formatTime(time)}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>🌉</span>
+            <span style={{ fontWeight: 'bold', color: '#8B4513' }}>{gameState.bridgesActivated.size}</span>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { RigidBody, CapsuleCollider } from '@react-three/rapier'
 import { useInput } from './InputManager'
 import CameraController from './CameraController'
+import { useGameState } from './Scene'
 import * as THREE from 'three'
 
 function PlayerController({
@@ -20,6 +21,7 @@ function PlayerController({
   debugMode = false
 }) {
   const { getInput } = useInput()
+  const { updateGameState } = useGameState()
   const rigidBodyRef = useRef()
   const meshRef = useRef()
   
@@ -128,6 +130,9 @@ function PlayerController({
     
     // Update velocity state
     setVelocity(vel)
+    
+    // Update player position in game state
+    updateGameState({ playerPosition: [currentPos.x, currentPos.y, currentPos.z] })
     
     // Update animation
     updateAnimation(vel, grounded, isMoving)

@@ -72,6 +72,9 @@ function GameContent() {
         {/* Fog for massive depth */}
         <fog attach="fog" args={['#87CEEB', 100, 500]} />
         
+        {/* Environment for reflections */}
+        <Environment preset="forest" background={false} />
+        
         <Physics gravity={[0, -30, 0]} debug={playerControls.debugMode}>
           <Scene />
           <PlayerController
@@ -93,9 +96,6 @@ function GameContent() {
             debugMode={playerControls.debugMode}
           />
         </Physics>
-        
-        {/* Environment for reflections */}
-        <Environment preset="forest" background={false} />
       </Suspense>
     </>
   )
@@ -121,6 +121,8 @@ function App() {
               far: 2000
             }}
             shadows
+            gl={{ antialias: true, alpha: false }}
+            dpr={[1, 2]}
           >
             <GameContent />
           </Canvas>

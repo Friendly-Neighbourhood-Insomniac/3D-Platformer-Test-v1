@@ -144,254 +144,256 @@ function AnimatedCollectible({ path, position, scale = [1, 1, 1] }) {
 function Scene() {
   return (
     <group>
-      {/* ===== GROUND ZONE (Y: 0-20) - Forest/Grassland ===== */}
+      {/* =================================
+          GROUND ZONE (Y: 0-50) - Forest/Grassland
+          ================================= */}
       
-      {/* Base Terrain - Large grass platforms forming the foundation */}
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[0, 0, 0]} scale={[8, 2, 8]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[50, 0, 0]} scale={[6, 2, 6]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[100, 0, 0]} scale={[7, 2, 7]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[150, 0, 0]} scale={[5, 2, 5]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[200, 0, 0]} scale={[6, 2, 6]} />
+      {/* Base Terrain - Large grass platforms */}
+      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[0, 0, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[100, 0, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[200, 0, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[300, 0, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass-large.glb" position={[400, 0, 0]} scale={[5, 5, 1]} />
       
       {/* Side platforms for exploration */}
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[25, 2, 30]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[75, 3, -25]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[125, 4, 35]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[175, 2, -30]} scale={[3, 1, 3]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[50, 10, 100]} scale={[3, 1, 3]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[150, 15, -100]} scale={[3, 1, 3]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[250, 20, 100]} scale={[3, 1, 3]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[350, 15, -100]} scale={[3, 1, 3]} />
       
       {/* Forest decorations */}
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[10, 4, 15]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[40, 4, -20]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[80, 4, 25]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[120, 4, -15]} scale={[2.2, 2.2, 2.2]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[160, 4, 20]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[190, 4, -25]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[25, 10, 50]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[125, 10, -75]} scale={[1.8, 1.8, 1.8]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[225, 10, 75]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[325, 10, -50]} scale={[2.2, 2.2, 2.2]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[425, 10, 60]} scale={[1.8, 1.8, 1.8]} />
       
       {/* Vegetation and details */}
-      <GLBModel path="/assets/Models/GLB format/flowers.glb" position={[15, 4, -10]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/grass.glb" position={[35, 4, 10]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/mushrooms.glb" position={[65, 4, -15]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/plant.glb" position={[95, 4, 18]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/flowers-tall.glb" position={[135, 4, -12]} scale={[1.4, 1.4, 1.4]} />
+      <GLBModel path="/assets/Models/GLB format/flowers.glb" position={[75, 10, -25]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/grass.glb" position={[175, 10, 25]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/mushrooms.glb" position={[275, 10, -40]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/plant.glb" position={[375, 10, 35]} scale={[1.3, 1.3, 1.3]} />
       
       {/* Interactive elements */}
-      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[30, 4, 5]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/crate.glb" position={[70, 4, -8]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[110, 4, 12]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[150, 4, -18]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[100, 10, 100]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/crate.glb" position={[200, 10, -80]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[300, 10, 90]} scale={[1.3, 1.3, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/barrel.glb" position={[400, 10, -70]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Ground zone collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[25, 6, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[75, 7, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[125, 8, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[175, 6, 0]} scale={[1.2, 1.2, 1.2]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[50, 15, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-bronze.glb" position={[150, 15, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[250, 15, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[350, 15, 0]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Transition ramp to mid zone */}
-      <GLBModel path="/assets/Models/GLB format/block-grass-large-slope.glb" position={[220, 2, 0]} scale={[3, 3, 3]} rotation={[0, 0, 0]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[240, 8, 0]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass-large-slope.glb" position={[450, 5, 0]} scale={[3, 3, 3]} rotation={[0, 0, 0]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[480, 20, 0]} scale={[2, 1, 2]} />
       
-      {/* ===== MID ZONE (Y: 20-60) - Snow/Mountain Region ===== */}
+      {/* =================================
+          MID ZONE (Y: 50-150) - Snow/Mountain Region
+          ================================= */}
       
       {/* Snow base platforms */}
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[260, 20, 0]} scale={[6, 3, 6]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[310, 22, 0]} scale={[5, 2, 5]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[360, 25, 0]} scale={[6, 3, 6]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[410, 28, 0]} scale={[5, 2, 5]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[0, 50, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[100, 55, 0]} scale={[4, 3, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[200, 60, 0]} scale={[5, 4, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[300, 65, 0]} scale={[4, 3, 1]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large.glb" position={[400, 70, 0]} scale={[5, 4, 1]} />
       
       {/* Snow stepped platforms */}
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[285, 26, 25]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[285, 26, -25]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[335, 30, 20]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[335, 30, -20]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[385, 33, 30]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[385, 33, -30]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[50, 58, 75]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[50, 58, -75]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[150, 63, 60]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[150, 63, -60]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[250, 68, 80]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[250, 68, -80]} scale={[2, 1, 2]} />
       
       {/* Snow trees and decorations */}
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[270, 26, 15]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/tree-snow.glb" position={[320, 28, -18]} scale={[1.6, 1.6, 1.6]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow-small.glb" position={[370, 31, 22]} scale={[1.4, 1.4, 1.4]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[420, 34, -16]} scale={[1.7, 1.7, 1.7]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[75, 60, 40]} scale={[1.8, 1.8, 1.8]} />
+      <GLBModel path="/assets/Models/GLB format/tree-snow.glb" position={[175, 65, -45]} scale={[1.6, 1.6, 1.6]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine-snow-small.glb" position={[275, 70, 50]} scale={[1.4, 1.4, 1.4]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine-snow.glb" position={[375, 75, -40]} scale={[1.7, 1.7, 1.7]} />
       
       {/* Snow obstacles and hazards */}
-      <GLBModel path="/assets/Models/GLB format/rocks.glb" position={[290, 26, -10]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/stones.glb" position={[340, 30, 8]} scale={[1.8, 1.8, 1.8]} />
-      <GLBModel path="/assets/Models/GLB format/trap-spikes.glb" position={[315, 28, 0]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/spike-block.glb" position={[365, 31, -5]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/rocks.glb" position={[125, 58, -25]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/stones.glb" position={[225, 63, 20]} scale={[1.8, 1.8, 1.8]} />
+      <GLBModel path="/assets/Models/GLB format/trap-spikes.glb" position={[200, 65, 300]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/spike-block.glb" position={[325, 70, -15]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Mid zone collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[260, 26, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[310, 28, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[360, 31, 0]} scale={[1.3, 1.3, 1.3]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[410, 34, 0]} scale={[1.2, 1.2, 1.2]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-silver.glb" position={[50, 65, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[150, 70, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[250, 75, 0]} scale={[1.3, 1.3, 1.3]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[350, 80, 0]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Moving platforms in mid zone */}
       <MovingGLBModel 
         path="/assets/Models/GLB format/block-moving.glb" 
-        startPos={[290, 32, 0]} 
-        endPos={[320, 32, 0]} 
+        startPos={[125, 70, 0]} 
+        endPos={[175, 70, 0]} 
         scale={[2, 1, 2]} 
         speed={1.2} 
       />
       <MovingGLBModel 
         path="/assets/Models/GLB format/block-moving-blue.glb" 
-        startPos={[340, 36, -15]} 
-        endPos={[380, 36, -15]} 
+        startPos={[275, 78, -40]} 
+        endPos={[325, 78, -40]} 
         scale={[2, 1, 2]} 
         speed={1.0} 
       />
       
       {/* Transition to summit */}
-      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[430, 30, 0]} scale={[2, 3, 2]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-large-slope.glb" position={[450, 35, 0]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[400, 75, 400]} scale={[2, 3, 2]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow-large-slope.glb" position={[430, 85, 0]} scale={[2, 2, 2]} />
       
-      {/* ===== SUMMIT ZONE (Y: 60-120) - Sky/Cloud Platforms ===== */}
+      {/* =================================
+          SUMMIT ZONE (Y: 150-500) - Sky/Cloud Platforms
+          ================================= */}
       
       {/* Summit base platforms */}
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[480, 60, 0]} scale={[5, 2, 5]} />
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[530, 65, 0]} scale={[4, 2, 4]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[580, 70, 0]} scale={[5, 2, 5]} />
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[630, 75, 0]} scale={[6, 3, 6]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[0, 150, 0]} scale={[5, 5, 1]} />
+      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[100, 160, 0]} scale={[4, 3, 1]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[200, 170, 0]} scale={[5, 4, 1]} />
+      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[300, 180, 0]} scale={[6, 5, 1]} />
       
       {/* Floating platforms */}
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[505, 68, 25]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[505, 68, -25]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[555, 73, 20]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[555, 73, -20]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[605, 78, 30]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[605, 78, -30]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[50, 165, 60]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[50, 165, -60]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[150, 175, 50]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform-overhang.glb" position={[150, 175, -50]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[250, 185, 70]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[250, 185, -70]} scale={[2, 1, 2]} />
       
       {/* Summit moving platforms - more challenging */}
       <MovingGLBModel 
         path="/assets/Models/GLB format/block-moving-large.glb" 
-        startPos={[510, 72, 0]} 
-        endPos={[550, 72, 0]} 
+        startPos={[75, 170, 0]} 
+        endPos={[125, 170, 0]} 
         scale={[3, 1, 3]} 
         speed={1.5} 
       />
       <MovingGLBModel 
         path="/assets/Models/GLB format/block-moving-blue.glb" 
-        startPos={[560, 77, -10]} 
-        endPos={[600, 77, 10]} 
+        startPos={[175, 180, -25]} 
+        endPos={[225, 180, 25]} 
         scale={[2, 1, 2]} 
         speed={1.8} 
       />
       <MovingGLBModel 
         path="/assets/Models/GLB format/block-moving.glb" 
-        startPos={[610, 82, 0]} 
-        endPos={[650, 82, 0]} 
+        startPos={[275, 190, 0]} 
+        endPos={[325, 190, 0]} 
         scale={[2, 1, 2]} 
         speed={2.0} 
       />
       
       {/* Summit hazards */}
-      <GLBModel path="/assets/Models/GLB format/trap-spikes-large.glb" position={[520, 67, 0]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/spike-block-wide.glb" position={[570, 72, 0]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/saw.glb" position={[590, 76, 0]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/trap-spikes-large.glb" position={[100, 165, 0]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/spike-block-wide.glb" position={[200, 175, 0]} scale={[1.3, 1.3, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/saw.glb" position={[250, 180, 0]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Summit collectibles - high value */}
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[480, 66, 0]} scale={[1.8, 1.8, 1.8]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[530, 71, 0]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[580, 76, 0]} scale={[1.8, 1.8, 1.8]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[630, 81, 0]} scale={[1.8, 1.8, 1.8]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[50, 170, 0]} scale={[1.8, 1.8, 1.8]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[150, 180, 0]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[250, 190, 0]} scale={[1.8, 1.8, 1.8]} />
       
       {/* Final goal area */}
-      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[680, 80, 0]} scale={[8, 4, 8]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[680, 88, 0]} scale={[3, 3, 3]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[680, 84, 10]} scale={[2, 2, 2]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[680, 84, -10]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/platform-fortified.glb" position={[250, 200, 250]} scale={[8, 6, 8]} />
+      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[250, 210, 250]} scale={[3, 3, 3]} />
+      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[240, 206, 260]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[260, 206, 240]} scale={[2, 2, 2]} />
       
       {/* Victory collectibles */}
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[675, 86, 5]} scale={[2, 2, 2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[685, 86, -5]} scale={[2, 2, 2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[680, 86, 0]} scale={[2, 2, 2]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[245, 208, 255]} scale={[2, 2, 2]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[255, 208, 245]} scale={[2, 2, 2]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/heart.glb" position={[250, 208, 250]} scale={[2, 2, 2]} />
       
-      {/* ===== SIDE AREAS AND SECRET ZONES ===== */}
+      {/* =================================
+          SECRET AREAS
+          ================================= */}
       
       {/* Secret area 1 - Hidden forest grove */}
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[50, 10, 60]} scale={[3, 1, 3]} />
-      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[80, 12, 60]} scale={[2, 1, 2]} />
-      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[50, 14, 65]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[80, 16, 55]} scale={[1.3, 1.3, 1.3]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[65, 16, 60]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[100, 25, 150]} scale={[3, 1, 3]} />
+      <GLBModel path="/assets/Models/GLB format/block-grass.glb" position={[150, 30, 150]} scale={[2, 1, 2]} />
+      <GLBModel path="/assets/Models/GLB format/tree.glb" position={[100, 35, 160]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[150, 40, 140]} scale={[1.3, 1.3, 1.3]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[125, 40, 150]} scale={[1.5, 1.5, 1.5]} />
       
       {/* Secret area 2 - Snow cave */}
-      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[350, 40, -60]} scale={[4, 2, 4]} />
-      <GLBModel path="/assets/Models/GLB format/block-snow-overhang.glb" position={[350, 44, -60]} scale={[3, 2, 3]} />
-      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[350, 46, -60]} scale={[1.5, 1.5, 1.5]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[355, 46, -65]} scale={[1.3, 1.3, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/block-snow.glb" position={[300, 90, -150]} scale={[4, 2, 4]} />
+      <GLBModel path="/assets/Models/GLB format/chest.glb" position={[300, 96, -150]} scale={[1.5, 1.5, 1.5]} />
+      <AnimatedCollectible path="/assets/Models/GLB format/key.glb" position={[310, 96, -160]} scale={[1.3, 1.3, 1.3]} />
       
-      {/* Secret area 3 - Sky island */}
-      <GLBModel path="/assets/Models/GLB format/platform.glb" position={[600, 90, 60]} scale={[4, 2, 4]} />
-      <GLBModel path="/assets/Models/GLB format/tree-pine.glb" position={[600, 94, 65]} scale={[1.2, 1.2, 1.2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/jewel.glb" position={[600, 94, 55]} scale={[2, 2, 2]} />
-      <AnimatedCollectible path="/assets/Models/GLB format/coin-gold.glb" position={[605, 94, 60]} scale={[1.8, 1.8, 1.8]} />
+      {/* =================================
+          GROUND PLANE AND BOUNDARIES
+          ================================= */}
       
-      {/* ===== BOUNDARY ELEMENTS ===== */}
-      
-      {/* Boundary walls using rocks */}
-      {Array.from({length: 30}, (_, i) => {
-        const x = i * 25 - 50
-        return (
-          <GLBModel 
-            key={`north-boundary-${i}`}
-            path="/assets/Models/GLB format/rocks.glb" 
-            position={[x, 5, 80]} 
-            scale={[2, 3, 2]} 
-          />
-        )
-      })}
-      
-      {Array.from({length: 30}, (_, i) => {
-        const x = i * 25 - 50
-        return (
-          <GLBModel 
-            key={`south-boundary-${i}`}
-            path="/assets/Models/GLB format/rocks.glb" 
-            position={[x, 5, -80]} 
-            scale={[2, 3, 2]} 
-          />
-        )
-      })}
-      
-      {/* ===== GROUND PLANE ===== */}
-      <RigidBody type="fixed" position={[350, -10, 0]}>
+      {/* Ground plane */}
+      <RigidBody type="fixed" position={[250, -25, 0]}>
         <mesh receiveShadow>
-          <boxGeometry args={[800, 2, 200]} />
+          <boxGeometry args={[600, 5, 600]} />
           <meshStandardMaterial color="#2d4a22" />
         </mesh>
       </RigidBody>
       
-      {/* ===== CHECKPOINT FLAGS ===== */}
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[200, 8, 5]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[410, 34, 5]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[630, 81, 5]} scale={[1.5, 1.5, 1.5]} />
+      {/* Boundary walls */}
+      {Array.from({length: 20}, (_, i) => {
+        const x = i * 30 - 250
+        return (
+          <GLBModel 
+            key={`north-boundary-${i}`}
+            path="/assets/Models/GLB format/rocks.glb" 
+            position={[x, 15, 250]} 
+            scale={[2, 3, 2]} 
+          />
+        )
+      })}
       
-      {/* ===== GUIDANCE SIGNS ===== */}
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[25, 4, 8]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[240, 8, 8]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[450, 35, 8]} scale={[1.2, 1.2, 1.2]} />
+      {Array.from({length: 20}, (_, i) => {
+        const x = i * 30 - 250
+        return (
+          <GLBModel 
+            key={`south-boundary-${i}`}
+            path="/assets/Models/GLB format/rocks.glb" 
+            position={[x, 15, -250]} 
+            scale={[2, 3, 2]} 
+          />
+        )
+      })}
       
-      {/* ===== ADDITIONAL INTERACTIVE ELEMENTS ===== */}
+      {/* =================================
+          CHECKPOINT FLAGS
+          ================================= */}
+      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[450, 25, 10]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[400, 85, 10]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/flag.glb" position={[300, 195, 10]} scale={[1.5, 1.5, 1.5]} />
+      
+      {/* =================================
+          GUIDANCE SIGNS
+          ================================= */}
+      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[50, 15, 20]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[480, 25, 20]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/sign.glb" position={[430, 90, 20]} scale={[1.2, 1.2, 1.2]} />
+      
+      {/* =================================
+          INTERACTIVE ELEMENTS
+          ================================= */}
       
       {/* Levers and buttons for puzzles */}
-      <GLBModel path="/assets/Models/GLB format/lever.glb" position={[100, 4, 15]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/button-round.glb" position={[300, 28, 12]} scale={[1.3, 1.3, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/button-square.glb" position={[550, 73, 15]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/lever.glb" position={[200, 15, 40]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/button-round.glb" position={[200, 70, 30]} scale={[1.3, 1.3, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/button-square.glb" position={[200, 185, 40]} scale={[1.2, 1.2, 1.2]} />
       
       {/* Doors and locks */}
-      <GLBModel path="/assets/Models/GLB format/door-rotate.glb" position={[150, 4, 20]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/lock.glb" position={[350, 31, 18]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/door-large-open.glb" position={[650, 81, 20]} scale={[2, 2, 2]} />
+      <GLBModel path="/assets/Models/GLB format/door-rotate.glb" position={[300, 15, 50]} scale={[1.5, 1.5, 1.5]} />
+      <GLBModel path="/assets/Models/GLB format/lock.glb" position={[300, 70, 45]} scale={[1.2, 1.2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/door-large-open.glb" position={[300, 195, 50]} scale={[2, 2, 2]} />
       
       {/* Ladders for vertical navigation */}
-      <GLBModel path="/assets/Models/GLB format/ladder.glb" position={[75, 4, -15]} scale={[1.2, 2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/ladder-broken.glb" position={[325, 28, -18]} scale={[1.3, 1.8, 1.3]} />
-      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[575, 73, -15]} scale={[1.2, 2.5, 1.2]} />
-      
-      {/* Atmospheric elements */}
-      <GLBModel path="/assets/Models/GLB format/poles.glb" position={[125, 4, -25]} scale={[1.2, 1.2, 1.2]} />
-      <GLBModel path="/assets/Models/GLB format/hedge.glb" position={[275, 26, -22]} scale={[1.5, 1.5, 1.5]} />
-      <GLBModel path="/assets/Models/GLB format/fence-straight.glb" position={[525, 68, -25]} scale={[1.3, 1.3, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/ladder.glb" position={[150, 15, -40]} scale={[1.2, 2, 1.2]} />
+      <GLBModel path="/assets/Models/GLB format/ladder-broken.glb" position={[250, 70, -45]} scale={[1.3, 1.8, 1.3]} />
+      <GLBModel path="/assets/Models/GLB format/ladder-long.glb" position={[200, 185, -40]} scale={[1.2, 2.5, 1.2]} />
     </group>
   )
 }

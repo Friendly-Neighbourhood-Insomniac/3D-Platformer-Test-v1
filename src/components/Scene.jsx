@@ -4,23 +4,69 @@ import { RigidBody } from '@react-three/rapier'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
-// GLB Model Component
-function GLBModel({ path, position = [0, 0, 0], rotation = [0, 0, 0], scale = [1, 1, 1], type = "fixed" }) {
-  const { scene } = useGLTF(path)
-  const clonedScene = scene.clone()
-  
+// Placeholder Geometry Component for missing GLB models
+function PlaceholderModel({ position = [0, 0, 0], rotation = [0, 0, 0], scale = [1, 1, 1], type = "fixed", color = "#8B4513", geometry = "box" }) {
+  const getGeometry = () => {
+    switch (geometry) {
+      case "cylinder":
+        return <cylinderGeometry args={[0.5, 0.5, 1, 8]} />
+      case "cone":
+        return <coneGeometry args={[0.5, 1, 8]} />
+      case "sphere":
+        return <sphereGeometry args={[0.5, 8, 6]} />
+      default:
+        return <boxGeometry args={[1, 1, 1]} />
+    }
+  }
+
   return (
     <RigidBody type={type} position={position} rotation={rotation}>
-      <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
+      <mesh scale={scale} castShadow receiveShadow>
+        {getGeometry()}
+        <meshStandardMaterial color={color} />
+      </mesh>
     </RigidBody>
   )
 }
 
-// Moving Platform Component
+// GLB Model Component with fallback
+function GLBModel({ path, position = [0, 0, 0], rotation = [0, 0, 0], scale = [1, 1, 1], type = "fixed" }) {
+  try {
+    const { scene } = useGLTF(path)
+    const clonedScene = scene.clone()
+    
+    return (
+      <RigidBody type={type} position={position} rotation={rotation}>
+        <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
+      </RigidBody>
+    )
+  } catch (error) {
+    // Fallback to placeholder if GLB fails to load
+    const getPlaceholderProps = (path) => {
+      if (path.includes('tree')) return { color: "#228B22", geometry: "cylinder" }
+      if (path.includes('coin')) return { color: "#FFD700", geometry: "cylinder", scale: [scale[0] * 0.5, scale[1] * 0.1, scale[2] * 0.5] }
+      if (path.includes('grass')) return { color: "#32CD32", geometry: "box" }
+      if (path.includes('snow')) return { color: "#F0F8FF", geometry: "box" }
+      if (path.includes('platform')) return { color: "#8B4513", geometry: "box" }
+      if (path.includes('rock')) return { color: "#696969", geometry: "sphere" }
+      if (path.includes('flower')) return { color: "#FF69B4", geometry: "cone" }
+      if (path.includes('crate')) return { color: "#8B4513", geometry: "box" }
+      if (path.includes('barrel')) return { color: "#654321", geometry: "cylinder" }
+      if (path.includes('chest')) return { color: "#8B4513", geometry: "box" }
+      if (path.includes('heart')) return { color: "#FF0000", geometry: "sphere" }
+      if (path.includes('key')) return { color: "#FFD700", geometry: "cylinder" }
+      if (path.includes('jewel')) return { color: "#9932CC", geometry: "sphere" }
+      return { color: "#8B4513", geometry: "box" }
+    }
+
+    const placeholderProps = getPlaceholderProps(path)
+    return <PlaceholderModel position={position} rotation={rotation} scale={scale} type={type} {...placeholderProps} />
+  }
+}
+
+// Moving Platform Component with fallback
 function MovingGLBModel({ path, startPos, endPos, scale = [1, 1, 1], speed = 1 }) {
   const ref = useRef()
-  const { scene } = useGLTF(path)
-  const clonedScene = scene.clone()
   
   useFrame((state) => {
     if (!ref.current) return
@@ -36,19 +82,31 @@ function MovingGLBModel({ path, startPos, endPos, scale = [1, 1, 1], speed = 1 }
     
     ref.current.setTranslation(currentPos, true)
   })
-  
-  return (
-    <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
-      <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
-    </RigidBody>
-  )
+
+  try {
+    const { scene } = useGLTF(path)
+    const clonedScene = scene.clone()
+    
+    return (
+      <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
+        <primitive object={clonedScene} scale={scale} castShadow receiveShadow />
+      </RigidBody>
+    )
+  } catch (error) {
+    return (
+      <RigidBody ref={ref} type="kinematicPosition" position={startPos}>
+        <mesh scale={scale} castShadow receiveShadow>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color="#4169E1" />
+        </mesh>
+      </RigidBody>
+    )
+  }
 }
 
-// Collectible Component with animation
+// Collectible Component with animation and fallback
 function AnimatedCollectible({ path, position, scale = [1, 1, 1] }) {
   const ref = useRef()
-  const { scene } = useGLTF(path)
-  const clonedScene = scene.clone()
   
   useFrame((state) => {
     if (ref.current) {
@@ -56,10 +114,25 @@ function AnimatedCollectible({ path, position, scale = [1, 1, 1] }) {
       ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 3) * 0.3
     }
   })
+
+  const getCollectibleProps = (path) => {
+    if (path.includes('coin-bronze')) return { color: "#CD7F32", geometry: "cylinder" }
+    if (path.includes('coin-silver')) return { color: "#C0C0C0", geometry: "cylinder" }
+    if (path.includes('coin-gold')) return { color: "#FFD700", geometry: "cylinder" }
+    if (path.includes('jewel')) return { color: "#9932CC", geometry: "sphere" }
+    if (path.includes('heart')) return { color: "#FF0000", geometry: "sphere" }
+    if (path.includes('key')) return { color: "#FFD700", geometry: "cylinder" }
+    return { color: "#FFD700", geometry: "cylinder" }
+  }
+
+  const props = getCollectibleProps(path)
   
   return (
     <group ref={ref} position={position}>
-      <primitive object={clonedScene} scale={scale} castShadow />
+      <mesh scale={[scale[0] * 0.5, scale[1] * 0.1, scale[2] * 0.5]} castShadow>
+        <cylinderGeometry args={[0.5, 0.5, 0.2, 8]} />
+        <meshStandardMaterial color={props.color} />
+      </mesh>
     </group>
   )
 }

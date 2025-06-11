@@ -6,12 +6,12 @@ import CameraController from './CameraController'
 import * as THREE from 'three'
 
 function PlayerController({
-  position = [0, 5, 0],
+  position = [0, 10, 0],
   capsuleHeight = 1.8,
   capsuleRadius = 0.4,
   speed = 8,
   runSpeed = 12,
-  jumpForce = 15,
+  jumpForce = 20,
   gravityScale = 1,
   airControl = 0.3,
   groundRayLength = 0.7,
@@ -36,15 +36,14 @@ function PlayerController({
   const checkGrounded = useCallback(() => {
     if (!rigidBodyRef.current) return false
     
+    const currentVel = rigidBodyRef.current.linvel()
     const position = rigidBodyRef.current.translation()
-    raycaster.current.set(
-      new THREE.Vector3(position.x, position.y, position.z),
-      rayDirection.current
-    )
     
-    // This is a simplified ground check - in a real game you'd raycast against the scene
-    // For now, we'll use a simple Y position check
-    return position.y <= 1.5
+    // Check if velocity is very small and player is close to a platform
+    // This is a simplified ground check
+    const isNearGround = Math.abs(currentVel.y) < 0.5 && position.y > -10
+    
+    return isNearGround
   }, [])
   
   // Animation state management
@@ -93,7 +92,7 @@ function PlayerController({
     
     const moveDirection = new THREE.Vector3()
     moveDirection.addScaledVector(cameraRight, input.movement.x)
-    moveDirection.addScaledVector(cameraDirection, -input.movement.y)
+    moveDirection.addScaledVector(cameraDirection, input.movement.y)
     moveDirection.normalize()
     
     // Apply movement

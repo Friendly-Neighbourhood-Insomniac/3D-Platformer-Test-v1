@@ -273,8 +273,8 @@ export function InputProvider({ children, showMobileControls = true }) {
     
     // Keyboard input
     const kb = inputState.current.keyboard
-    if (kb.KeyW || kb.ArrowUp) input.movement.y += 1
-    if (kb.KeyS || kb.ArrowDown) input.movement.y -= 1
+    if (kb.KeyW || kb.ArrowUp) input.movement.y -= 1
+    if (kb.KeyS || kb.ArrowDown) input.movement.y += 1
     if (kb.KeyA || kb.ArrowLeft) input.movement.x -= 1
     if (kb.KeyD || kb.ArrowRight) input.movement.x += 1
     if (kb.Space) input.jump = true
@@ -287,7 +287,7 @@ export function InputProvider({ children, showMobileControls = true }) {
       
       // Left stick for movement
       if (Math.abs(gamepad.axes[0]) > deadzone) input.movement.x += gamepad.axes[0]
-      if (Math.abs(gamepad.axes[1]) > deadzone) input.movement.y -= gamepad.axes[1]
+      if (Math.abs(gamepad.axes[1]) > deadzone) input.movement.y += gamepad.axes[1]
       
       // Right stick for camera
       if (Math.abs(gamepad.axes[2]) > deadzone) input.camera.x += gamepad.axes[2]
